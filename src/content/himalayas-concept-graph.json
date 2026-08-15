@@ -1,0 +1,88 @@
+{
+  "chapterTitle": "The Himalayas",
+  "subject": "Social Studies",
+  "gradeBand": "class-4",
+  "language": "en",
+  "reviewedBy": "Purna",
+  "reviewedAt": "2026-08-14",
+  "_comment": "reviewedBy/reviewedAt must be filled in by a human reviewer (CNT-003) before this chapter is ever shown to a learner.",
+  "concepts": [
+    {
+      "id": "himalayas-intro",
+      "title": "What the Himalayas are",
+      "sourceRef": "textbook p.250, opening paragraph",
+      "provenance": "source",
+      "hint": "Look at the very first sentence of the text above — it says exactly what kind of mountain range this is.",
+      "representations": [
+        {
+          "type": "phrase_walkthrough",
+          "phrases": [
+            { "text": "The Himalayas ", "icon": "🏔️", "label": "The Himalayas" },
+            { "text": "form the world's highest mountain range. ", "icon": "🌍🥇", "label": "world's highest mountain range" },
+            { "text": "They are fold mountains ", "icon": "⛰️", "label": "fold mountains" },
+            { "text": "located in Asia. ", "icon": "🗺️", "label": "located in Asia" },
+            { "text": "The Himalayan range covers ", "icon": "📏", "label": "Himalayan range covers" },
+            { "text": "the entire northernmost part of India, ", "icon": "🇮🇳⬆️", "label": "northernmost part of India", "map": { "x": 150, "y": 130, "speech": "Way up north!" } },
+            { "text": "from Ladakh ", "icon": "📍", "label": "Ladakh", "map": { "x": 103.5, "y": 78.1, "speech": "I'm at Ladakh!" } },
+            { "text": "to the north-eastern state of Arunachal Pradesh.", "icon": "📍", "label": "Arunachal Pradesh", "map": { "x": 246.2, "y": 218.1, "speech": "At Arunachal Pradesh!" } }
+          ]
+        },
+        { "type": "text", "content": "The Himalayas form the world's highest mountain range. They are fold mountains located in Asia. The Himalayan range covers the entire northernmost part of India, from Ladakh to the north-eastern state of Arunachal Pradesh." },
+        { "type": "narration", "content": "The Himalayas are the tallest mountains on Earth, and they run all along the very top of India, like a wall stretching from one side of the country to the other." }
+      ],
+      "checkQuestions": [
+        { "prompt": "The Himalayas are the world's ______ mountain range.", "type": "multiple_choice", "options": ["highest", "oldest", "smallest"], "correct": "highest" }
+      ]
+    },
+    {
+      "id": "himalayas-location",
+      "title": "Where the Himalayas are located",
+      "sourceRef": "textbook p.250, Location section",
+      "provenance": "source",
+      "hint": "The number is written right after the word 'about' in the first sentence.",
+      "representations": [
+        { "type": "text", "content": "The Himalayas stretch about 2400 km, passing through northern India, southern China, Nepal and Bhutan. Their width varies from 150 km in Arunachal Pradesh to 400 km in Jammu and Kashmir and Ladakh. The Himalayas contain nine of the highest peaks in the world." },
+        { "type": "narration", "content": "Imagine walking in a straight line for 2400 kilometres — that's roughly the length of the whole Himalayan range, stretching across four countries." }
+      ],
+      "checkQuestions": [
+        { "prompt": "True or False: The Himalayas stretch to about 2400 km.", "type": "multiple_choice", "options": ["True", "False"], "correct": "True" }
+      ]
+    },
+    {
+      "id": "himalayas-climate",
+      "title": "How the Himalayas affect climate",
+      "sourceRef": "textbook p.251, Climate section",
+      "provenance": "source",
+      "hint": "Read the very first sentence again — it tells you directly whether they influence the climate or not.",
+      "representations": [
+        { "type": "text", "content": "The Great Himalayas influence the climate of the Indian subcontinent and affect monsoon and rainfall patterns. The temperature decreases the higher you go. The western Himalayas are colder and covered with snow; the eastern Himalayas are lower and receive heavy rainfall instead." },
+        { "type": "narration", "content": "Think of the Himalayas as a giant wall — cold winds hit one side, monsoon rain gets trapped on the other, and that changes weather for the whole region below." }
+      ],
+      "checkQuestions": [
+        { "prompt": "True or False: The Himalayas do not influence the climate of the Indian subcontinent.", "type": "multiple_choice", "options": ["True", "False"], "correct": "False" }
+      ]
+    },
+    {
+      "id": "himalayas-region",
+      "title": "The Himalayan Region",
+      "sourceRef": "textbook p.253, The Himalayan Region section",
+      "provenance": "source",
+      "activityType": "match_zones",
+      "teachingText": "The Himalayan region is divided into three parts. Western Himalayas: Jammu and Kashmir, Ladakh, Himachal Pradesh and Uttarakhand. Central Himalayas: parts of West Bengal and Sikkim. Eastern Himalayas: the 'seven sisters' states, including Assam and Arunachal Pradesh.",
+      "instructions": "Now place each state in the right zone.",
+      "zones": [
+        { "id": "western", "label": "Western Himalayas", "color": "#EAF3EF" },
+        { "id": "central", "label": "Central Himalayas", "color": "#FDF4E3" },
+        { "id": "eastern", "label": "Eastern Himalayas", "color": "#F3EAF6" }
+      ],
+      "items": [
+        { "id": "ladakh", "label": "Ladakh", "correctZone": "western" },
+        { "id": "hp", "label": "Himachal Pradesh", "correctZone": "western" },
+        { "id": "sikkim", "label": "Sikkim", "correctZone": "central" },
+        { "id": "wb", "label": "West Bengal", "correctZone": "central" },
+        { "id": "assam", "label": "Assam", "correctZone": "eastern" },
+        { "id": "arunachal", "label": "Arunachal Pradesh", "correctZone": "eastern" }
+      ]
+    }
+  ]
+}
