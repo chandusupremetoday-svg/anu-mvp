@@ -1,33 +1,24 @@
-/**
- * /api/classify-answer — the REAL "natural language model" brain,
- * 2026-08-15. This is a Vercel serverless function: a small piece of
- * code that runs on a private server, not in the child's browser, so
- * it's the one safe place to use the Anthropic API key.
- *
- * WHAT THIS ACTUALLY DOES: given a concept's correct answer and what
- * the learner actually chose, asks Claude to judge whether a wrong
- * answer suggests she didn't understand the idea, or just picked the
- * wrong button despite understanding it (ASM-001-003) — a real
- * judgment call, not the old fixed "always assume knowledge_gap" stub.
- */
-
 export default async function handler(req, res) {
+  console.log("STEP 1: function started, method =", req.method);
+
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Use POST" });
   }
 
   const { questionPrompt, correctAnswer, learnerAnswer, conceptText } = req.body || {};
+  console.log("STEP 2: received body", { questionPrompt, correctAnswer, learnerAnswer });
 
   if (!questionPrompt || !correctAnswer || !learnerAnswer) {
+    console.log("STEP 2b: missing required fields, stopping here");
     return res.status(400).json({ error: "Missing required fields" });
   }
 
-  // If the answer was actually correct, there's nothing to classify —
-  // save the API call entirely. Real cost discipline (AI-008), not just
-  // a nice-to-have.
   if (learnerAnswer === correctAnswer) {
+    console.log("STEP 3: learnerAnswer equals correctAnswer, treating as correct, stopping here");
     return res.status(200).json({ errorType: null });
   }
+
+  console.log("STEP 4: about to call Anthropic. Key exists:", Boolean(process.env.ANTHROPIC_API_KEY), "Key length:", (process.env.ANTHROPIC_API_KEY || "").length);
 
   try {
     const response = await fetch("https://api.anthropic.com/v1/messages", {
@@ -58,20 +49,22 @@ Respond with ONLY one word: either knowledge_gap or expression_only. Nothing els
       }),
     });
 
+    console.log("STEP 5: got response from Anthropic, status:", response.status);
+
     if (!response.ok) {
       const errText = await response.text();
       console.error("Anthropic API error:", errText);
-      // Fail safely — fall back to the old heuristic rather than break the lesson.
       return res.status(200).json({ errorType: "knowledge_gap", fallback: true });
     }
 
     const data = await response.json();
     const raw = (data.content?.[0]?.text || "").trim().toLowerCase();
     const errorType = raw.includes("expression") ? "expression_only" : "knowledge_gap";
+    console.log("STEP 6: success, errorType =", errorType);
 
     return res.status(200).json({ errorType });
   } catch (e) {
-    console.error("classify-answer failed:", e);
+    console.error("classify-answer failed:", e.message);
     return res.status(200).json({ errorType: "knowledge_gap", fallback: true });
   }
 }
