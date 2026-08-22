@@ -1,0 +1,234 @@
+{
+  "chapterTitle": "Our Resources",
+  "subject": "Social Studies",
+  "gradeBand": "class-4",
+  "language": "en",
+  "reviewedBy": "",
+  "reviewedAt": "",
+  "_comment": "reviewedBy/reviewedAt must be filled in by a human reviewer (CNT-003) before this chapter is ever shown to a learner. Built 2026-08-22 from the founder's daughter's own Class 4 Social Studies textbook, Chapter 8 'Our Resources' (photographed pages, water/mineral/human resources + overpopulation). All wording below is original/paraphrased, not copied from the textbook, per ANU's content policy. Intended as a genuine retention test: founder plans to stay silent for ~5 days after she completes this, then check what she can explain unaided.",
+  "concepts": [
+    {
+      "id": "natural-resource-intro",
+      "title": "What is a natural resource?",
+      "sourceRef": "Paraphrased from textbook Ch.8 intro, 'Natural Resources' section",
+      "provenance": "source",
+      "hint": "Think about things nobody built or made — they were just already there, waiting for us.",
+      "representations": [
+        {
+          "type": "text",
+          "content": "A natural resource is anything nature gives us for free, without anyone having to make it. Water, air, sunlight, minerals and forests are all natural resources. We need them every single day just to survive."
+        },
+        {
+          "type": "narration",
+          "content": "Nobody built the sun. Nobody built rivers or mountains full of minerals. Nature just gave them to us — and we couldn't survive a single day without them."
+        }
+      ],
+      "checkQuestions": [
+        {
+          "prompt": "Which of these is a natural resource?",
+          "type": "multiple_choice",
+          "options": ["A mobile phone", "Sunlight", "A car"],
+          "correct": "Sunlight"
+        }
+      ]
+    },
+    {
+      "id": "water-importance",
+      "title": "Why water matters so much",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Water Resources and Their Importance'",
+      "provenance": "source",
+      "hint": "Think of everything you personally use water for in one single day — that's most of the answer.",
+      "representations": [
+        {
+          "type": "text",
+          "content": "Water is essential for every living being. We use it for drinking, cleaning, washing, and growing our food through irrigation. It's also used for fishing, for boats to travel on (navigation), and even to make electricity — which is called hydroelectric power."
+        },
+        {
+          "type": "narration",
+          "content": "Think about your whole morning — brushing your teeth, the food your family cooks, even the lights in your house. Water touches almost all of it, in ways you don't usually notice."
+        }
+      ],
+      "checkQuestions": [
+        {
+          "prompt": "Electricity made using water is called ______ power.",
+          "type": "multiple_choice",
+          "options": ["hydroelectric", "solar", "wind"],
+          "correct": "hydroelectric"
+        }
+      ]
+    },
+    {
+      "id": "rivers-of-india",
+      "title": "Where our rivers come from",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Rivers' section",
+      "provenance": "source",
+      "hint": "One kind of river never runs dry because snow keeps melting. The other kind depends completely on rain.",
+      "representations": [
+        {
+          "type": "text",
+          "content": "India has two kinds of rivers. Perennial rivers, like the Ganga and Brahmaputra, start in the Himalayas and flow all year round because they're fed by melting snow and ice. Seasonal (peninsular) rivers, like the Krishna and Kaveri, depend on monsoon rains, so they can run low or dry in parts of the year."
+        },
+        {
+          "type": "narration",
+          "content": "Picture a river starting way up in a snowy mountain — that snow keeps slowly melting all year, so the river never really stops. Now picture a different river that only gets full and strong when the monsoon rains come. That's the real difference between these two kinds."
+        }
+      ],
+      "checkQuestions": [
+        {
+          "prompt": "Which of these rivers flows all year round because it's fed by melting Himalayan snow?",
+          "type": "multiple_choice",
+          "options": ["Ganga", "Krishna", "Kaveri"],
+          "correct": "Ganga"
+        }
+      ]
+    },
+    {
+      "id": "man-made-water-systems",
+      "title": "How people manage water",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Canals', 'Lakes and Tanks', 'Wells and Tube Wells'",
+      "provenance": "source",
+      "hint": "One of these is dug straight down into the ground. Another is a man-made channel that carries river water somewhere it wouldn't normally reach.",
+      "representations": [
+        {
+          "type": "text",
+          "content": "Where there's no river nearby, people build canals to carry river water to their fields. Lakes and tanks collect rainwater or river water in natural low areas of land, and that water is used for irrigation, drinking, and fishing. Wells and tube wells are dug straight into the ground to reach water that has soaked below the surface."
+        },
+        {
+          "type": "narration",
+          "content": "Imagine you're a farmer, but there's no river anywhere near your fields. What do you do? You could dig down into the ground for water, save up rainwater in a big tank, or build a long channel to bring river water all the way to you. India actually does all three."
+        }
+      ],
+      "checkQuestions": [
+        {
+          "prompt": "A channel built to carry river water to fields with no river nearby is called a ______.",
+          "type": "multiple_choice",
+          "options": ["canal", "tube well", "tank"],
+          "correct": "canal"
+        }
+      ]
+    },
+    {
+      "id": "multi-purpose-dams",
+      "title": "What a dam actually does",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Multi-purpose Projects'",
+      "provenance": "source",
+      "hint": "The clue is in the name itself — 'multi' means more than one. What are the different jobs listed in the text?",
+      "representations": [
+        {
+          "type": "text",
+          "content": "A dam is built across a river, and it does far more than one job at once — that's why it's called a multi-purpose project. It stores water for irrigation, stops rivers from flooding nearby land, and produces hydroelectric power, all from the same river."
+        },
+        {
+          "type": "narration",
+          "content": "One single dam can water thousands of farms, protect a whole town from flooding, and light up homes with electricity — all at the same time, from the same wall of concrete across a river."
+        }
+      ],
+      "checkQuestions": [
+        {
+          "prompt": "Which of these is NOT one of the jobs a multi-purpose dam does?",
+          "type": "multiple_choice",
+          "options": ["Making electricity", "Controlling floods", "Growing crops directly on it"],
+          "correct": "Growing crops directly on it"
+        }
+      ]
+    },
+    {
+      "id": "types-of-minerals",
+      "title": "What is a mineral, and what types are there?",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Mineral Resources' section",
+      "provenance": "source",
+      "activityType": "match_zones",
+      "teachingText": "A mineral is a substance found inside rocks. Metallic minerals contain metal — like iron, copper, and gold. Non-metallic minerals don't contain metal — like limestone, gypsum, and mica. Fuel minerals are burned for energy — like coal and petroleum.",
+      "instructions": "Now place each mineral into the right group.",
+      "zones": [
+        { "id": "metallic", "label": "Metallic", "color": "#EAF3EF" },
+        { "id": "non-metallic", "label": "Non-metallic", "color": "#FDF4E3" },
+        { "id": "fuel", "label": "Fuel", "color": "#F3EAF6" }
+      ],
+      "items": [
+        { "id": "iron", "label": "Iron", "correctZone": "metallic" },
+        { "id": "copper", "label": "Copper", "correctZone": "metallic" },
+        { "id": "gold", "label": "Gold", "correctZone": "metallic" },
+        { "id": "limestone", "label": "Limestone", "correctZone": "non-metallic" },
+        { "id": "mica", "label": "Mica", "correctZone": "non-metallic" },
+        { "id": "coal", "label": "Coal", "correctZone": "fuel" },
+        { "id": "petroleum", "label": "Petroleum", "correctZone": "fuel" }
+      ]
+    },
+    {
+      "id": "minerals-in-india",
+      "title": "Where India's key minerals come from",
+      "sourceRef": "Paraphrased from textbook Ch.8, mineral table and 'Learn More' notes",
+      "provenance": "source",
+      "hint": "One of these minerals is used for cooking gas and running vehicles — that's your clue.",
+      "representations": [
+        {
+          "type": "text",
+          "content": "Different minerals come from different parts of India. Iron is mined heavily in Jharkhand and Odisha and is used to make machines and buildings. Coal, found in Jharkhand and West Bengal, is burned as fuel and to make electricity. Petroleum, found in Assam and Gujarat, is turned into fuel for vehicles and cooking gas."
+        },
+        {
+          "type": "narration",
+          "content": "The metal in a building's frame probably started as iron ore dug out of the ground in Jharkhand. The gas your family cooks with probably started as petroleum, pumped out of the ground hundreds of kilometres away."
+        }
+      ],
+      "checkQuestions": [
+        {
+          "prompt": "Which mineral is turned into fuel for vehicles and cooking gas?",
+          "type": "multiple_choice",
+          "options": ["Petroleum", "Iron", "Mica"],
+          "correct": "Petroleum"
+        }
+      ]
+    },
+    {
+      "id": "human-resources",
+      "title": "People as a resource",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Human Resources' section",
+      "provenance": "source",
+      "hint": "Who is it that actually digs up the minerals, builds the dams, and grows the crops? The resource itself can't do any of that alone.",
+      "representations": [
+        {
+          "type": "text",
+          "content": "People are considered a resource too, because it's people who turn land, water, and minerals into things we can actually use. Without workers, engineers, and farmers, natural resources would just sit there, unused."
+        },
+        {
+          "type": "narration",
+          "content": "A mountain full of iron ore is worthless on its own. It takes real people — digging, building, inventing — to turn that ore into something like a bicycle or a bridge. That's why people themselves count as a resource."
+        }
+      ],
+      "checkQuestions": [
+        {
+          "prompt": "Why are people considered a resource?",
+          "type": "multiple_choice",
+          "options": ["They turn natural resources into useful things", "They live in cities", "They study in school"],
+          "correct": "They turn natural resources into useful things"
+        }
+      ]
+    },
+    {
+      "id": "overpopulation-impact",
+      "title": "Too much of a good thing",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Impact of Overpopulation'",
+      "provenance": "source",
+      "hint": "If way more people need jobs than there are jobs available, what happens to the people who can't find one?",
+      "representations": [
+        {
+          "type": "text",
+          "content": "Too many people can actually cause real problems. When a country has more people than its jobs, food, and resources can support, it leads to unemployment, food and water shortages, and even more trees being cut down, which harms the environment."
+        },
+        {
+          "type": "narration",
+          "content": "Imagine a classroom built for thirty students, but sixty show up. There aren't enough chairs, books, or attention to go around. A whole country can face the exact same kind of squeeze when it has more people than it's ready for."
+        }
+      ],
+      "checkQuestions": [
+        {
+          "prompt": "Which of these is a real effect of overpopulation mentioned in the lesson?",
+          "type": "multiple_choice",
+          "options": ["Unemployment", "More rainfall", "Fewer minerals forming"],
+          "correct": "Unemployment"
+        }
+      ]
+    }
+  ]
+}

@@ -4,10 +4,12 @@ import LessonEngine from "./components/LessonEngine";
 import ParentView from "./components/ParentView";
 import himalayasChapter from "./content/himalayas-concept-graph.json";
 import civicsChapter from "./content/civics-government-roles.json";
+import ourResourcesChapter from "./content/our-resources-concept-graph.json";
 
 const CHAPTERS = [
   { id: "himalayas", title: "The Himalayas (Social Studies)", data: himalayasChapter },
   { id: "civics", title: "Who Runs Our Country and State? (Civics)", data: civicsChapter },
+  { id: "our-resources", title: "Our Resources (Social Studies)", data: ourResourcesChapter },
 ];
 
 const LOCAL_KEY = "anu_consent_record_v1";
