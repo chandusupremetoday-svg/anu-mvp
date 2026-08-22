@@ -5,7 +5,7 @@
   "language": "en",
   "reviewedBy": "",
   "reviewedAt": "",
-  "_comment": "reviewedBy/reviewedAt must be filled in by a human reviewer (CNT-003) before this chapter is ever shown to a learner. Built 2026-08-22 from the founder's daughter's own Class 4 Social Studies textbook, Chapter 8 'Our Resources' (photographed pages, water/mineral/human resources + overpopulation). All wording below is original/paraphrased, not copied from the textbook, per ANU's content policy. Intended as a genuine retention test: founder plans to stay silent for ~5 days after she completes this, then check what she can explain unaided.",
+  "_comment": "reviewedBy/reviewedAt must be filled in by a human reviewer (CNT-003) before this chapter is ever shown to a learner. Built 2026-08-22 from the founder's daughter's own Class 4 Social Studies textbook, Chapter 8 'Our Resources'. All wording is original/paraphrased, not copied from the textbook. Revised same day to add: (1) real, properly CC-licensed photographs (Wikimedia Commons) on the dam and minerals concepts, and (2) a personal, local-life connection sentence in every concept, tied to Vijayawada/the Krishna river/Machilipatnam aquaculture, per the founder's explicit feedback that generic explanation alone wasn't enough. Founder caught and corrected a factual error in an earlier draft: Nagarjuna Sagar Dam is on the Krishna river but is NOT near Vijayawada — it's about 190km away, near the Telangana/Andhra Pradesh border (Nalgonda/Palnadu districts). Verified via web search 2026-08-22 and corrected below. Intended as a genuine retention test: founder plans to stay silent for ~5 days after she completes this, then check what she can explain unaided.",
   "concepts": [
     {
       "id": "natural-resource-intro",
@@ -16,7 +16,7 @@
       "representations": [
         {
           "type": "text",
-          "content": "A natural resource is anything nature gives us for free, without anyone having to make it. Water, air, sunlight, minerals and forests are all natural resources. We need them every single day just to survive."
+          "content": "A natural resource is anything nature gives us for free, without anyone having to make it. Water, air, sunlight, minerals and forests are all natural resources. We need them every single day just to survive. Even the water in the ponds near Machilipatnam that your own family works with started out as a natural resource, long before anyone used it for anything."
         },
         {
           "type": "narration",
@@ -41,7 +41,7 @@
       "representations": [
         {
           "type": "text",
-          "content": "Water is essential for every living being. We use it for drinking, cleaning, washing, and growing our food through irrigation. It's also used for fishing, for boats to travel on (navigation), and even to make electricity — which is called hydroelectric power."
+          "content": "Water is essential for every living being. We use it for drinking, cleaning, washing, and growing our food through irrigation. It's also used for fishing, for boats to travel on (navigation), and even to make electricity — which is called hydroelectric power. Your own family's aquaculture ponds near Machilipatnam are a real example of water being used for fish farming — the exact same water resource this lesson is talking about."
         },
         {
           "type": "narration",
@@ -66,7 +66,7 @@
       "representations": [
         {
           "type": "text",
-          "content": "India has two kinds of rivers. Perennial rivers, like the Ganga and Brahmaputra, start in the Himalayas and flow all year round because they're fed by melting snow and ice. Seasonal (peninsular) rivers, like the Krishna and Kaveri, depend on monsoon rains, so they can run low or dry in parts of the year."
+          "content": "India has two kinds of rivers. Perennial rivers, like the Ganga and Brahmaputra, start in the Himalayas and flow all year round because they're fed by melting snow and ice. Seasonal (peninsular) rivers, like the Krishna and Kaveri, depend on monsoon rains, so they can run low or dry in parts of the year. The Krishna river is the one that actually flows right through Vijayawada, your own city."
         },
         {
           "type": "narration",
@@ -91,7 +91,7 @@
       "representations": [
         {
           "type": "text",
-          "content": "Where there's no river nearby, people build canals to carry river water to their fields. Lakes and tanks collect rainwater or river water in natural low areas of land, and that water is used for irrigation, drinking, and fishing. Wells and tube wells are dug straight into the ground to reach water that has soaked below the surface."
+          "content": "Where there's no river nearby, people build canals to carry river water to their fields. Lakes and tanks collect rainwater or river water in natural low areas of land, and that water is used for irrigation, drinking, and fishing. Wells and tube wells are dug straight into the ground to reach water that has soaked below the surface. The farmland around Vijayawada uses canals fed by the Krishna river for exactly this reason."
         },
         {
           "type": "narration",
@@ -116,7 +116,12 @@
       "representations": [
         {
           "type": "text",
-          "content": "A dam is built across a river, and it does far more than one job at once — that's why it's called a multi-purpose project. It stores water for irrigation, stops rivers from flooding nearby land, and produces hydroelectric power, all from the same river."
+          "content": "A dam is built across a river, and it does far more than one job at once — that's why it's called a multi-purpose project. It stores water for irrigation, stops rivers from flooding nearby land, and produces hydroelectric power, all from the same river. The Prakasam Barrage, built right across the Krishna river in Vijayawada itself, is a real example close to home. Nagarjuna Sagar, which you already know from this chapter's exercises, is also on the Krishna river — but it's about 190 km away, near the Telangana border, not in Vijayawada.",
+          "image": {
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hirakud_Dam_Panorama.jpg",
+            "alt": "Hirakud Dam, a real multi-purpose dam in India",
+            "credit": "Hirakud Dam — Wikimedia Commons, CC BY 3.0"
+          }
         },
         {
           "type": "narration",
@@ -138,7 +143,12 @@
       "sourceRef": "Paraphrased from textbook Ch.8, 'Mineral Resources' section",
       "provenance": "source",
       "activityType": "match_zones",
-      "teachingText": "A mineral is a substance found inside rocks. Metallic minerals contain metal — like iron, copper, and gold. Non-metallic minerals don't contain metal — like limestone, gypsum, and mica. Fuel minerals are burned for energy — like coal and petroleum.",
+      "teachingText": "A mineral is a substance found inside rocks. Metallic minerals contain metal — like iron, copper, and gold. Non-metallic minerals don't contain metal — like limestone, gypsum, and mica. Fuel minerals are burned for energy — like coal and petroleum. The cement used to build houses in Vijayawada is made from limestone, one of the non-metallic minerals you're about to sort.",
+      "image": {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/CSIRO_ScienceImage_10945_Coal.jpg",
+        "alt": "Real coal, a fuel mineral",
+        "credit": "Coal — CSIRO, Wikimedia Commons, CC BY 3.0"
+      },
       "instructions": "Now place each mineral into the right group.",
       "zones": [
         { "id": "metallic", "label": "Metallic", "color": "#EAF3EF" },
@@ -164,7 +174,7 @@
       "representations": [
         {
           "type": "text",
-          "content": "Different minerals come from different parts of India. Iron is mined heavily in Jharkhand and Odisha and is used to make machines and buildings. Coal, found in Jharkhand and West Bengal, is burned as fuel and to make electricity. Petroleum, found in Assam and Gujarat, is turned into fuel for vehicles and cooking gas."
+          "content": "Different minerals come from different parts of India. Iron is mined heavily in Jharkhand and Odisha and is used to make machines and buildings. Coal, found in Jharkhand and West Bengal, is burned as fuel and to make electricity. Petroleum, found in Assam and Gujarat, is turned into fuel for vehicles and cooking gas. The cooking gas cylinder in your own kitchen in Vijayawada very likely started as petroleum, mined hundreds of kilometres away."
         },
         {
           "type": "narration",
@@ -189,7 +199,7 @@
       "representations": [
         {
           "type": "text",
-          "content": "People are considered a resource too, because it's people who turn land, water, and minerals into things we can actually use. Without workers, engineers, and farmers, natural resources would just sit there, unused."
+          "content": "People are considered a resource too, because it's people who turn land, water, and minerals into things we can actually use. Without workers, engineers, and farmers, natural resources would just sit there, unused. Your own father's aquaculture work near Machilipatnam is a perfect real example — the water and the fish are natural resources, but it's people, like your dad, who turn them into something the whole family and business depends on."
         },
         {
           "type": "narration",
@@ -214,7 +224,7 @@
       "representations": [
         {
           "type": "text",
-          "content": "Too many people can actually cause real problems. When a country has more people than its jobs, food, and resources can support, it leads to unemployment, food and water shortages, and even more trees being cut down, which harms the environment."
+          "content": "Too many people can actually cause real problems. When a country has more people than its jobs, food, and resources can support, it leads to unemployment, food and water shortages, and even more trees being cut down, which harms the environment. A busy, crowded market street in Vijayawada during a festival gives you a small taste of what happens when there are far more people in one place than it was built for."
         },
         {
           "type": "narration",

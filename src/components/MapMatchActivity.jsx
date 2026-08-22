@@ -48,6 +48,18 @@ export default function MapMatchActivity({ activity, onComplete, chapterTitle })
         <h3>{activity.title}</h3>
         <div style={{ background: "#F3EFE4", borderRadius: 14, padding: 16, marginBottom: 16 }}>
           <div style={{ fontSize: 11, textTransform: "uppercase", color: "#9C9585", marginBottom: 6 }}>TEXT</div>
+          {activity.image && (
+            <div style={{ marginBottom: 12 }}>
+              <img
+                src={activity.image.url}
+                alt={activity.image.alt || ""}
+                style={{ width: "100%", borderRadius: 10, display: "block" }}
+              />
+              {activity.image.credit && (
+                <div style={{ fontSize: 10, color: "#9C9585", marginTop: 4 }}>{activity.image.credit}</div>
+              )}
+            </div>
+          )}
           <p style={{ margin: 0 }}>{activity.teachingText}</p>
           <button onClick={() => speak(activity.teachingText)} style={smallBtnStyle}>🔊 Hear this</button>
         </div>

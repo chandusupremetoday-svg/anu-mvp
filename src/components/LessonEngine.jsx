@@ -474,6 +474,18 @@ export default function LessonEngine({ chapter, learnerId }) {
           <div style={{ fontSize: 11, textTransform: "uppercase", color: "#9C9585", marginBottom: 6 }}>
             {rep.type.replace("_", " ")}
           </div>
+          {rep.image && (
+            <div style={{ marginBottom: 12 }}>
+              <img
+                src={rep.image.url}
+                alt={rep.image.alt || ""}
+                style={{ width: "100%", borderRadius: 10, display: "block" }}
+              />
+              {rep.image.credit && (
+                <div style={{ fontSize: 10, color: "#9C9585", marginTop: 4 }}>{rep.image.credit}</div>
+              )}
+            </div>
+          )}
           <p style={{ margin: 0 }}>{rep.content}</p>
           <button onClick={hearExplanation} style={smallBtnStyle} disabled={isNarrating}>
             {isNarrating ? "🔊 Thinking of how to explain this..." : "🔊 Hear this"}
