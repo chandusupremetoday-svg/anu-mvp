@@ -10,6 +10,17 @@ it's actually built.
 ---
 
 ## Pedagogical patterns to apply more broadly
+**Real engagement needs visuals, not just voice** (founder's observation,
+2026-08-22, while testing the new AI-explained voice narration) — even
+a genuinely well-written spoken explanation isn't enough on its own to
+make a young child want to sit with the app. Voice alone can feel flat
+without something to look at — the founder specifically flagged
+pictures/animation/video as the missing piece for real engagement, not
+polish for its own sake. This is a real, separate, larger direction —
+likely closer to the six-beat narrative arc and visual-grammar ideas
+below than to a quick UI tweak. Needs its own design pass once voice
+and text are both solid, not attempted as a fast follow-on to a voice
+fix.
 
 **Comparative-scale building** (founder's idea, 2026-08-16) — instead of
 just reading "the Himalayas are the tallest," physically build a

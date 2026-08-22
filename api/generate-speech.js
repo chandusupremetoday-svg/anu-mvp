@@ -34,7 +34,7 @@ export default async function handler(req, res) {
         target_language_code: languageCode || "en-IN",
         speaker: speaker || "shubh",
         model: "bulbul:v3",
-        pace: 1,
+        pace: 0.85,
         speech_sample_rate: 22050,
       }),
     });

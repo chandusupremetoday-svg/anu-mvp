@@ -105,6 +105,13 @@ async function speak(text, languageCode = "en-IN") {
 // instead of the raw written text. If anything here fails, it quietly
 // falls back to narrating the original written text — a lesson can
 // never break because of this.
+//
+// narrationInFlight tracks any explanation currently being generated,
+// keyed by concept+representation. This means the background prefetch
+// (started the moment a screen appears) and an actual "Hear this" tap
+// can never both trigger a second, duplicate paid AI call for the same
+// text — whichever started first is simply waited on by the other.
+const narrationInFlight = {};
 async function getSpokenExplanation(writtenText, conceptId, repType, conceptTitle, chapterTitle) {
   const cacheKey = `anu_narration_v1_${conceptId}_${repType}`;
   try {
@@ -112,24 +119,36 @@ async function getSpokenExplanation(writtenText, conceptId, repType, conceptTitl
     if (cached) return cached;
   } catch (e) {}
 
-  try {
-    const res = await fetch("/api/generate-narration", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ writtenText, conceptTitle, chapterTitle }),
-    });
-    if (res.ok) {
-      const data = await res.json();
-      if (data.narration) {
-        try {
-          localStorage.setItem(cacheKey, data.narration);
-        } catch (e) {}
-        return data.narration;
-      }
-    }
-  } catch (e) {}
+  if (narrationInFlight[cacheKey]) {
+    return narrationInFlight[cacheKey];
+  }
 
-  return writtenText; // honest fallback: at least still says something correct
+  const promise = (async () => {
+    try {
+      const res = await fetch("/api/generate-narration", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ writtenText, conceptTitle, chapterTitle }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.narration) {
+          try {
+            localStorage.setItem(cacheKey, data.narration);
+          } catch (e) {}
+          return data.narration;
+        }
+      }
+    } catch (e) {}
+    return writtenText; // honest fallback: at least still says something correct
+  })();
+
+  narrationInFlight[cacheKey] = promise;
+  try {
+    return await promise;
+  } finally {
+    delete narrationInFlight[cacheKey];
+  }
 }
 
 const STRUGGLE_MESSAGES = [
@@ -221,6 +240,16 @@ export default function LessonEngine({ chapter, learnerId }) {
 
   useEffect(() => {
     setQuestionShownAt(Date.now());
+    // 2026-08-22: quietly start writing the spoken explanation the moment
+    // this screen appears — while the child is still reading — instead of
+    // waiting until "Hear this" is tapped. This is what cuts the wait
+    // roughly in half: by the time someone taps the button, the thinking
+    // step is often already done, and only the voice step is left.
+    const currentRep = concept?.representations?.[repIndex];
+    if (currentRep && currentRep.type !== "phrase_walkthrough" && !concept.activityType) {
+      getSpokenExplanation(currentRep.content, concept.id, currentRep.type, concept.title, chapter.chapterTitle);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [conceptIndex, repIndex]);
 
   useEffect(() => {
