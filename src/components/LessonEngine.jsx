@@ -4,10 +4,16 @@ import ReadAlongPhrases from "./ReadAlongPhrases.jsx";
 import { logEvent, getPreferredRepresentation, getConceptsDueForRecall, getStruggleSignal } from "../lib/learnerMemory.js";
 
 let cachedVoice = null;
-let currentAudio = null; // 2026-08-22: tracks whatever sound is playing right now, so a
-// new "Hear this" tap can always stop it first — this is the actual fix for the
-// double-voice/echo bug, which happened because nothing was ever stopping the
-// previous sound before starting a new one.
+let currentAudio = null;
+// 2026-08-22: the ANU voice, in one place. Warm female, natural/
+// conversational per Sarvam's own docs. To try a different voice,
+// change ONLY this line — e.g. "priya" is a well-regarded alternative
+// if this one doesn't land well on listening. Full candidate list
+// (female): ritu, priya, neha, pooja, simran, kavya, ishita, shreya,
+// roopa, tanya, shruti, suhani, kavitha, rupali, amelia, sophia.
+// Avoid "varun" for anything child-facing — Sarvam's own docs describe
+// it as a deep, dramatic villain/suspense voice.
+const VOICE_SPEAKER = "ishita";
 function getVoices() {
   return new Promise((resolve) => {
     let voices = window.speechSynthesis.getVoices();
@@ -73,7 +79,7 @@ async function speak(text, languageCode = "en-IN") {
     const res = await fetch("/api/generate-speech", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text, languageCode, speaker: "shubh" }),
+      body: JSON.stringify({ text, languageCode, speaker: VOICE_SPEAKER }),
     });
 
     if (res.ok) {

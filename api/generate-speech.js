@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Use POST" });
   }
 
-  const { text, languageCode, speaker } = req.body || {};
+  const { text, languageCode, speaker, temperature } = req.body || {};
 
   if (!text) {
     return res.status(400).json({ error: "Missing required field: text" });
@@ -32,9 +32,20 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         text,
         target_language_code: languageCode || "en-IN",
-        speaker: speaker || "shubh",
+        // 2026-08-22: switched default from "shubh" (male, never
+        // deliberately chosen) to "ishita" — Sarvam's own materials
+        // describe her as tuned for natural, dynamic conversation,
+        // matching what a warm female teaching voice needs. Easy to
+        // swap to another candidate (e.g. "priya") by changing just
+        // this one word if this doesn't land well on listening.
+        speaker: speaker || "ishita",
         model: "bulbul:v3",
         pace: 0.85,
+        // temperature controls expressiveness: higher = more natural,
+        // lively delivery; lower = flatter and more even. Sarvam's own
+        // default is 0.6 (fairly flat); raised here per direct request
+        // for a more natural, expressive-sounding voice.
+        temperature: temperature || 0.85,
         speech_sample_rate: 22050,
       }),
     });
