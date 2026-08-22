@@ -279,6 +279,9 @@ export default function LessonEngine({ chapter, learnerId }) {
         representationShown: rep.type,
         hintsUsed: hintsUsedThisConcept,
         hesitationMs,
+        questionPrompt: question.prompt,
+        correctAnswer: question.correct,
+        reexplanationShown: errorType === "knowledge_gap" ? newReexplanation || null : null,
       },
     });
 

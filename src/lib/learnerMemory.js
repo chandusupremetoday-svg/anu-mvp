@@ -91,3 +91,17 @@ export function getMemorySummary(learnerId) {
     return { conceptId, attempts: attempts.length, correct, hintsUsed: hints };
   });
 }
+
+// 2026-08-22: lets a parent actually read what the AI told the child when she
+// struggled, instead of only seeing that a struggle happened. This is the
+// direct visibility ParentView was missing once classify-answer started
+// generating real re-explanation text, not just a right/wrong label.
+export function getRecentReexplanations(learnerId, limit = 5) {
+  const events = readEvents().filter(
+    (e) =>
+      e.learnerId === learnerId &&
+      e.eventType === "attempt" &&
+      e.payload?.reexplanationShown
+  );
+  return events.slice(-limit).reverse();
+}
