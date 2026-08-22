@@ -281,9 +281,323 @@ ceiling against bugs, not a usage forecast.
 - ⬜ The actual child still hasn't used any of this — only the founder,
   as reviewer and tester, throughout
 
-**What's next:** Founder's call — deploy the backend to Vercel (the next
-real infrastructure milestone), or continue content/feature work first.
+---
 
-**Decision maker:** Founder (Purna) throughout, with Claude researching
-and verifying rather than recommending from memory on anything involving
-real cost or regulatory status.
+## 2026-08-15 (evening) — Git, GitHub, and first push — real friction, real fixes
+
+**What happened:** Founder's first time ever using Git or GitHub.
+Installed Git for Windows (clean install, no complications this time).
+Created a GitHub account and a new repository (`anu-mvp`).
+
+Hit two real, self-corrected mistakes:
+1. Typed `git add` without the trailing dot, which added nothing — the
+   error message itself explained the fix, founder caught it immediately.
+2. Forgot to create `.gitignore` before the first commit, so `node_modules`
+   (thousands of files) got pushed to GitHub by mistake. Fixed properly
+   afterward: created `.gitignore`, ran `git rm -r --cached node_modules`
+   to remove it from tracking without deleting it locally, committed, and
+   pushed the cleanup. A mid-push network drop ("Could not resolve host")
+   was a separate, unrelated hiccup — resolved by simply retrying once
+   back online.
+
+**Why it matters:** The repository is now clean — real project files
+only, properly excluding `node_modules` on every future push.
+
+---
+
+## 2026-08-15 (evening) — Deployed live: anu-mvp.vercel.app
+
+**What happened:** Created a Vercel account (linked to GitHub), correctly
+chose the free Hobby plan over the paid Pro trial that was pre-selected
+by default, and imported the `anu-mvp` repository. Skipped 2FA setup for
+now (genuinely optional, deferred rather than adding a new phone-app
+dependency mid-deployment). Deployed without the Anthropic API key yet
+(intentional — the safe fallback means the app works identically either
+way), planning to add the real key as its own clean step.
+
+**Result: the project is live at `anu-mvp.vercel.app`** — a real,
+public web address, not `localhost` anymore. Confirmed working: same
+consent screen, same lesson flow, identical to local testing.
+
+**Why it matters:** This is the moment ANU stopped being "only on my
+computer." Any device with the link can now open it — the real
+prerequisite for the child actually using this herself, not just the
+founder testing it in VS Code.
+
+**Status against Definition of Done:**
+- ✅ Real deployment, live and publicly reachable
+- ⬜ AI backend still not activated (see below)
+- ⬜ The actual child still hasn't used it yet
+
+---
+
+## 2026-08-15 (evening) — AI backend activation blocked by a real platform bug, paused
+
+**What happened:** Attempted to activate the real Claude-powered backend
+(api/classify-answer.js) by creating a paid Anthropic Console account and
+API key. Hit a genuine, confirmed platform issue, not a user error:
+
+1. First attempt (original account) — blocked because the account had
+   defaulted to a "Team" organization type, which requires Anthropic's
+   Sales team to approve a Trust & Security questionnaire before prepaid
+   credits can be purchased. Confirmed via Anthropic's own support chat.
+2. Second attempt (fresh individual account, different email, Incognito
+   window) — avoided the Team/T&S issue entirely, reached the actual
+   payment screen, but the bank's OTP verification page consistently
+   showed "$0.00" instead of the real amount ($5.90), and the payment
+   failed both times it was attempted.
+3. Ruled out the card/bank as the cause — the same SBI card had
+   previously worked for an international USD transaction with Anthropic
+   (a Claude Pro subscription), suggesting the bug is specific to the
+   Console's prepaid-credit checkout flow, not the card or bank.
+4. Tried a second, different card (Mastercard) on the same fresh
+   individual account — got a third, distinct failure: a generic "check
+   your card" rejection, despite the card details being verified correct
+   twice. Three different failure modes, across two accounts and two
+   cards, now points clearly to a systemic issue in Anthropic's Console
+   payment flow — most likely specific to how it handles Indian cards or
+   OTP verification for this particular checkout — rather than anything
+   fixable on the user's side.
+
+**Why it matters:** This is real, useful diagnostic work, not a dead
+end — the next attempt (whenever that is) won't need to repeat any of
+this troubleshooting. The exact failure point is known precisely.
+
+**Decision:** Paused activating the real AI backend for now, rather than
+continuing to retry against a confirmed platform bug. This does NOT
+affect anything else — the live site (anu-mvp.vercel.app) continues
+working exactly as before, using the same safe fallback behavior it's
+had all along. Nothing built tonight is at risk.
+
+**What's next:** Either wait and retry the Console credit purchase
+another day (platform bugs like this are often fixed within days), or
+report it directly to Anthropic support with the specific details above.
+No urgency — the fallback keeps the app fully functional in the meantime.
+Beyond that: get the actual child using the live site for the first
+time, and/or continue expanding content (Physical Features, next
+Himalayan sections).
+
+**Decision maker:** Founder (Purna) throughout — chose to build this
+personally from Sprint 0 through live deployment, chose to pause on the
+payment bug after thorough, methodical troubleshooting rather than
+either giving up early or over-retrying, and made every real product,
+budget, and sequencing decision along the way with Claude researching
+and verifying rather than recommending from memory.
+
+---
+
+## 2026-08-18/19 — AWS Bedrock path pursued, real progress, blocked on Anthropic authorization
+
+**What happened:** Picked up the "AWS Bedrock identified as the real
+alternative path" note from 2026-08-15. Created a fresh AWS account
+(anu-mvp, account ID 131540502561), completed KYC (Product development /
+Individual), and verified payment via UPI AutoPay. Confirmed the ₹15,000
+UPI mandate shown during setup is an RBI-mandated ceiling on recurring
+autopay, not an actual charge — real billing stays usage-based.
+
+Found Bedrock's Model catalog (region ap-south-2, Hyderabad) genuinely
+lists Claude models — Opus 5, Sonnet 5, Opus 4.7, Sonnet 4.5, Haiku
+4.5 — all serverless. Sonnet 4.5 identified as the right starting model:
+proven, cheaper than Opus-tier, easy to upgrade later since the AI
+provider already lives in one isolated file (api/classify-answer.js, per
+AI-002 model abstraction from Sprint 3).
+
+**Blocked:** Anthropic's required one-time "submit use case details"
+form (needed before any Claude model can be invoked on Bedrock) failed
+with "Your account is not authorized to perform this action" — a
+new-account authorization hold, not a form-filling error. Researched the
+issue and found it's a known, documented AWS India-specific problem
+affecting multiple accounts (per AWS re:Post community threads), with
+no public self-service fix — real precedent showed resolution times
+ranging from a few days to two-plus weeks. Filed a real AWS Support case
+(Account and Billing → Account → Other Account Issues, General
+question, Web). Case confirmed registered and pending.
+
+**Why it matters:** This is the same underlying blocker as the
+2026-08-15 Anthropic Console payment bug — the AI backend still isn't
+live via this path — but diagnosed through a different provider with a
+clearer, trackable resolution path (an actual support ticket).
+
+**What happened next:** While the AWS case remained pending, discovered
+the Anthropic Console account already had a genuine $5.00 credit balance
+(a real successful $5 purchase, not a free trial) — separate from the
+earlier-blocked $20 purchase attempts. This unblocked the original,
+simpler path immediately, making the AWS Bedrock route no longer
+urgent (left running in the background, not abandoned).
+
+**Decision maker:** Founder (Purna) throughout — chose to pursue the
+AWS path already flagged in the roadmap rather than keep retrying the
+blocked Anthropic Console checkout, personally filed the support case,
+and caught the existing $5 balance that reopened the simpler path.
+
+---
+
+## 2026-08-19/20 — AI backend genuinely activated: API key generated, wired in, and deployed
+
+**What happened:** Using the existing $5.00 Anthropic Console credit
+balance, set a $5 monthly spend limit as a safety ceiling, then
+generated a real API key (`anu-mvp-production`, no expiration — chosen
+deliberately over a time-limited key, since an expiring key risked
+silently breaking the live site for the child with no obvious cause).
+
+Added the key to two separate places, both required:
+1. Local `.env` file (`ANTHROPIC_API_KEY=...`) — confirmed already
+   correctly excluded from Git via the existing `.gitignore` (set up
+   back on 2026-08-15, still working correctly).
+2. Vercel's Environment Variables (Production and Preview) — triggered
+   Vercel's own "Redeploy" flow, which rebuilt and deployed the live
+   site with the key included.
+
+**Why it matters:** This is the actual moment `api/classify-answer.js`
+went from "built but not live" (its status since 2026-08-15) to
+genuinely deployed with real credentials.
+
+---
+
+## 2026-08-20 — AI backend confirmed genuinely live, with an honest finding
+
+**What happened:** Resolved real confusion about whether
+`api/classify-answer.js` was actually calling Claude after deployment.
+Added temporary `console.log` "STEP" markers to the function and
+redeployed via `git add` / `git commit` / `git push` (confirmed Vercel
+auto-deploys from GitHub on push, no manual redeploy click needed).
+Vercel Runtime Logs showed execution reaching `STEP 6: success`, meaning
+a real response was received and parsed from Claude.
+
+Anthropic Console's own billing dashboard stayed at $0.00 spent
+throughout, which caused real, justified doubt — not blind trust. A
+direct Playground test (same account, same key) confirmed the account
+and key both work correctly and immediately compute cost (≈$0.000086
+for a one-word test), while the dashboard's spend figure still didn't
+visibly update. Concluded the Console's billing display has a real
+display lag/bug, unrelated to whether the app's calls are succeeding —
+ruled out with a controlled comparison test, not assumed.
+
+**Final, undeniable confirmation:** inspected the browser's own Local
+Storage directly (`anu_learning_events_v1`, via DevTools → Application)
+after triggering a real wrong-answer attempt on the live site. Found
+the actual stored event:
+
+```
+conceptId: "himalayas-intro"
+errorType: "knowledge_gap"
+eventType: "attempt"
+wasCorrect: false
+```
+
+This is first-hand data written by the app itself — not a log, not a
+dashboard, not inferred. Confirms the full path genuinely works:
+learner answers wrong → app calls `/api/classify-answer` → function
+calls Claude → Claude classifies the error → classification is
+correctly stored in learner memory.
+
+**Honest finding, equally important:** re-reading `LessonEngine.jsx`
+confirmed that `errorType` is currently used ONLY inside `logEvent()` —
+it has no effect on anything the child sees in that same session. The
+"switch to a different explanation" behavior a learner experiences is
+triggered purely by `wasCorrect` (right/wrong), completely independent
+of what Claude classified the error as. So: the AI backend is real and
+working, but its current real-world effect is invisible — it only
+feeds data that could influence a *future* session via
+`getPreferredRepresentation()`, not anything visible right now. This
+was found by directly interrogating the running app's own data, not
+assumed from logs or dashboards.
+
+**Why it matters:** This is a meaningfully different, more honest
+status than "AI backend is live" alone would suggest. Live and correct
+≠ visibly useful to the child yet. Both facts are true and both belong
+in this log.
+
+**Status against Definition of Done, current:**
+- ✅ Representation-switch confirmed
+- ✅ Richer interaction type (drag/tap match) confirmed
+- ✅ Teach-before-test enforced everywhere
+- ✅ Real per-learner memory and personalization (MEM-001, LRN-001–005)
+- ✅ Real delayed-recall checking (PED-005)
+- ✅ Real AI-backed answer classification — CONFIRMED LIVE (upgraded
+  from "code complete, not yet live")
+- ⬜ AI classification doesn't yet visibly change anything the child
+  experiences in-session (see ROADMAP.md)
+- ⬜ Natural voice / real character art — still needs its own paid
+  services, backend infrastructure now exists
+- ⬜ The actual child still hasn't used any of this — only the founder,
+  as reviewer and tester, throughout
+
+**What's next (see ROADMAP.md):** decide how/whether `errorType`
+should actually change something visible in the SAME session. Not yet
+decided or built. Beyond that: get the actual child using the live,
+AI-powered site for the first time — the real, final test this whole
+project has been building toward.
+
+**Decision maker:** Founder (Purna) — refused to accept dashboard
+numbers or log summaries as sufficient proof, pushed for direct
+verification via Playground comparison and browser storage inspection,
+which is what actually surfaced both the confirmation and the honest
+gap.
+
+---
+
+## 2026-08-21/22 — Natural voice: Sarvam AI chosen, tested, code written — not yet deployed
+
+**What happened:** Researched real text-to-speech providers against
+specific requirements: neutral BBC-style English accent, natural
+Telugu (not a foreign accent reading Telugu script), and genuine cost-
+effectiveness with no repeated charge for already-generated content.
+Compared Sarvam AI against ElevenLabs directly. Chose Sarvam for three
+concrete reasons: INR-native billing (avoids repeating the exact kind
+of USD-checkout payment bug that cost real days with Anthropic's
+Console earlier this project), no commercial-use restriction on its
+free tier (ElevenLabs' free tier explicitly prohibits this, which would
+have forced a provider switch right when Phase 2 paying families
+arrived), and DPDP/India data compliance, relevant given this handles a
+child's data.
+
+Created a Sarvam account (Founder role selected during onboarding, 100
+free credits), generated a real API key, saved it safely to `.env` and
+Vercel. Tested via Sarvam's own developer docs "Try it" button first
+(confirmed the API key and connection work — real 200 response with
+audio data), then found the actual listening Playground (a separate
+page from the docs) and heard the real voice for the first time —
+described honestly as "its ok," not glowing, a real starting point to
+refine later rather than a finished answer.
+
+**Cost architecture built in from the start, not added later:** wrote
+`api/generate-speech.js` (same safe backend pattern as
+`api/classify-answer.js` — the Sarvam key never reaches the browser),
+and updated `LessonEngine.jsx`'s `speak()` function to check
+`localStorage` for a previously-generated version of the exact same
+sentence before ever calling Sarvam again — a genuine first step toward
+the "generate-once, cache-forever" architecture designed earlier,
+though honestly still limited to one browser/one child, not yet the
+full cross-family shared cache (that still needs Supabase, already
+listed as a gap). The old robotic browser voice was kept, renamed
+`speakFallback()`, and now only runs if the real Sarvam call fails for
+any reason — the lesson can never break because of this, same safety
+pattern as the AI classification work.
+
+**A real mid-session correction, worth recording honestly:** the first
+attempt to paste the new `LessonEngine.jsx` code didn't actually take —
+a check afterward showed the file still contained the old `speak()`
+function with no `speakFallback` or Sarvam call anywhere in it. Caught
+by asking the founder to search the file for two specific expected
+lines before proceeding, rather than assuming the paste worked. Second
+attempt confirmed correct both pieces present.
+
+**Status: code is written and saved locally, but NOT yet committed or
+pushed.** While staging the change (`git add .`), the terminal output
+showed line-ending warnings for hundreds of files inside
+`node_modules` — files that should be permanently excluded from git
+per the `.gitignore` fix already documented in this log on 2026-08-15.
+This suggests that protection may have been lost or changed somehow
+since then. Session paused here, deliberately, rather than proceeding
+to commit and push without checking — nothing has been committed, the
+live site is completely unaffected and safe. **What's next:** check the
+actual contents of `.gitignore` before any further git commands.
+
+**Decision maker:** Founder (Purna) — chose Sarvam after being walked
+through a fair comparison rather than a single recommendation, caught
+the payment-bug parallel with ElevenLabs' USD billing himself, asked
+directly whether Sarvam calls cost credits every time (a good instinct
+that led to the caching design being added the same session rather
+than left for later), and paused the git push himself rather than
+proceeding past an unexplained warning.

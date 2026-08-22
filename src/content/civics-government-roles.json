@@ -1,0 +1,55 @@
+{
+  "chapterTitle": "Who Runs Our Country and State?",
+  "subject": "Civics",
+  "gradeBand": "class-4",
+  "language": "en",
+  "reviewedBy": "Purna",
+  "reviewedAt": "16-08-2026",
+  "_comment": "reviewedBy/reviewedAt must be filled in by a human reviewer (CNT-003) before this chapter is ever shown to a learner. This is a foundational, deliberately narrow slice of the Class 7 NCERT 'How the State Government Works' chapter (gess303.pdf) — scoped down to basic role identification (President/PM/Governor/CM) rather than the full election-mechanics/majority/coalition content, which is genuinely more advanced and deferred to a later phase.",
+  "concepts": [
+    {
+      "id": "flag-hoisting-hook",
+      "title": "Have you ever wondered...",
+      "sourceRef": "General civics fact, verified via web search 2026-08-16 (multiple independent news sources, not from a single textbook)",
+      "provenance": "source",
+      "hint": "Think about WHO does it, and WHERE — one happens in Delhi, one happens closer to home.",
+      "representations": [
+        {
+          "type": "text",
+          "content": "On Independence Day, the Prime Minister raises the flag in Delhi — for the whole country. In your own state, the Chief Minister raises the flag in your state's capital — just for your state."
+        },
+        {
+          "type": "narration",
+          "content": "Have you ever noticed — on Independence Day, someone raises the flag on TV in Delhi, and someone else raises it in your own state, on the same day? That's not two people doing the same job. One speaks for the whole country. One speaks for just your state."
+        }
+      ],
+      "checkQuestions": [
+        {
+          "prompt": "Who raises the flag in Delhi, for the WHOLE country?",
+          "type": "multiple_choice",
+          "options": ["The Prime Minister", "The Chief Minister"],
+          "correct": "The Prime Minister"
+        }
+      ]
+    },
+    {
+      "id": "central-state-roles",
+      "title": "Who Belongs to the Whole Country, and Who Belongs to Your State?",
+      "sourceRef": "Simplified from NCERT Class 7 Social and Political Life, Chapter 3 'How the State Government Works' (gess303.pdf) — deliberately narrowed to role identification only",
+      "provenance": "source",
+      "activityType": "match_zones",
+      "teachingText": "Some leaders work for the WHOLE country. The President and the Prime Minister work for all of India, from Delhi. Some leaders work for just YOUR state. The Governor and the Chief Minister work for just your state, from your state's capital.",
+      "instructions": "Place each leader in the right zone — do they work for the whole country, or just your state?",
+      "zones": [
+        { "id": "central", "label": "Whole Country (Central Government)", "color": "#EAF3EF" },
+        { "id": "state", "label": "Just Your State (State Government)", "color": "#FDF4E3" }
+      ],
+      "items": [
+        { "id": "president", "label": "President", "correctZone": "central" },
+        { "id": "pm", "label": "Prime Minister", "correctZone": "central" },
+        { "id": "governor", "label": "Governor", "correctZone": "state" },
+        { "id": "cm", "label": "Chief Minister", "correctZone": "state" }
+      ]
+    }
+  ]
+}

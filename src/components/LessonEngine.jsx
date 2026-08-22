@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import MapMatchActivity from "./MapMatchActivity.jsx";
 import ReadAlongPhrases from "./ReadAlongPhrases.jsx";
-import { logEvent, getPreferredRepresentation, getConceptsDueForRecall } from "../lib/learnerMemory.js";
+import { logEvent, getPreferredRepresentation, getConceptsDueForRecall, getStruggleSignal } from "../lib/learnerMemory.js";
 
 let cachedVoice = null;
 function getVoices() {
@@ -11,7 +11,9 @@ function getVoices() {
     window.speechSynthesis.onvoiceschanged = () => resolve(window.speechSynthesis.getVoices());
   });
 }
-async function speak(text) {
+
+// The old robotic browser voice — kept as a safe fallback only now.
+async function speakFallback(text) {
   try {
     if (!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
@@ -29,6 +31,56 @@ async function speak(text) {
     u.rate = 0.9;
     window.speechSynthesis.speak(u);
   } catch (e) {}
+}
+
+// Real, natural voice narration (Sarvam AI), 2026-08-22.
+// Caches each unique sentence in this browser's storage so the SAME
+// child replaying the SAME line never triggers a second paid API call
+// — a small, honest first step toward the full generate-once-cache-
+// forever architecture, which needs shared storage (Supabase) to work
+// across different children/devices. This version only saves repeat
+// calls for one child, one browser — real, but limited on purpose.
+async function speak(text, languageCode = "te-IN") {
+  const cacheKey = `anu_voice_${languageCode}_${text}`;
+  try {
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) {
+      new Audio(`data:audio/wav;base64,${cached}`).play();
+      return;
+    }
+
+    const res = await fetch("/api/generate-speech", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text, languageCode, speaker: "shubh" }),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      if (data.audio) {
+        try {
+          localStorage.setItem(cacheKey, data.audio);
+        } catch (e) {
+          // storage full or unavailable — still fine, just won't cache this one
+        }
+        new Audio(`data:audio/wav;base64,${data.audio}`).play();
+        return;
+      }
+    }
+    throw new Error("real voice unavailable, using fallback");
+  } catch (e) {
+    speakFallback(text);
+  }
+}
+
+const STRUGGLE_MESSAGES = [
+  "You're working hard on this one, and that's exactly how understanding happens — no rush at all.",
+  "This one's taking a bit more thought, and that's completely okay — take your time.",
+  "Tricky ideas take a little longer sometimes — you're doing exactly what you should be doing.",
+  "Good thinking, even when it's hard — that's how it really sinks in.",
+];
+function pickStruggleMessage() {
+  return STRUGGLE_MESSAGES[Math.floor(Math.random() * STRUGGLE_MESSAGES.length)];
 }
 
 async function classifyError(selectedOption, correctOption, question, conceptText) {
@@ -59,6 +111,10 @@ export default function LessonEngine({ chapter, learnerId }) {
   const [hintsUsedThisConcept, setHintsUsedThisConcept] = useState(0);
   const [showHint, setShowHint] = useState(false);
   const [stage, setStage] = useState("blocked-check");
+  const [questionShownAt, setQuestionShownAt] = useState(Date.now());
+  const [warmthNote, setWarmthNote] = useState(null);
+  const [showUnresolvedNote, setShowUnresolvedNote] = useState(false);
+  const cardRef = useRef(null);
 
   const isApproved = Boolean(chapter?.reviewedBy && chapter?.reviewedAt);
 
@@ -68,7 +124,7 @@ export default function LessonEngine({ chapter, learnerId }) {
 
   if (!isApproved) {
     return (
-      <div style={cardStyle}>
+      <div ref={cardRef} style={cardStyle}>
         <h3>This chapter isn't ready yet</h3>
         <p>
           "{chapter?.chapterTitle}" hasn't been signed off by a human reviewer yet (CNT-003). The
@@ -94,10 +150,21 @@ export default function LessonEngine({ chapter, learnerId }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [conceptIndex]);
 
+  useEffect(() => {
+    setQuestionShownAt(Date.now());
+  }, [conceptIndex, repIndex]);
+
+  useEffect(() => {
+    if (cardRef.current) {
+      cardRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [conceptIndex, repIndex, showUnresolvedNote]);
+
   if (concept?.activityType === "match_zones") {
     return (
       <MapMatchActivity
         activity={concept}
+        chapterTitle={chapter.chapterTitle}
         onComplete={() => {
           setConceptIndex(conceptIndex + 1 < concepts.length ? conceptIndex + 1 : conceptIndex);
           if (conceptIndex + 1 >= concepts.length) setStage("complete");
@@ -109,7 +176,7 @@ export default function LessonEngine({ chapter, learnerId }) {
   if (stage === "complete") {
     const dueForRecall = getConceptsDueForRecall(learnerId);
     return (
-      <div style={cardStyle}>
+      <div ref={cardRef} style={cardStyle}>
         <h3>🎉 Lesson complete: {chapter.chapterTitle}</h3>
         {dueForRecall.length > 0 ? (
           <div style={{ background: "#FFF6DE", border: "1px solid #E9D9A0", borderRadius: 10, padding: 14, marginBottom: 14 }}>
@@ -127,8 +194,8 @@ export default function LessonEngine({ chapter, learnerId }) {
         )}
         <p>All concepts covered. Next session, invite a teach-back moment (JRNY-008):</p>
         <p style={{ fontStyle: "italic" }}>
-          "One of your friends couldn't make it today — can you explain what you learned about the
-          Himalayas to them tomorrow?"
+          "One of your friends couldn't make it today — can you explain what you learned about{" "}
+          {chapter.chapterTitle} to them tomorrow?"
         </p>
       </div>
     );
@@ -136,6 +203,25 @@ export default function LessonEngine({ chapter, learnerId }) {
 
   const rep = concept.representations[repIndex];
   const question = concept.checkQuestions[0];
+
+  if (showUnresolvedNote) {
+    return (
+      <div ref={cardRef} style={cardStyle}>
+        <h3>{concept.title}</h3>
+        <div style={{ background: "#FFF6DE", border: "1px solid #E9D9A0", borderRadius: 14, padding: 18, marginBottom: 16 }}>
+          <p style={{ margin: 0, fontWeight: 700 }}>This one's still tricky — and that's completely okay.</p>
+          <p style={{ margin: "8px 0 0 0", fontSize: 14 }}>
+            We tried a few different ways together. Some ideas just need more time, or a person to
+            sit with you and go through it slowly — and that's not a bad thing at all. We'll come
+            back to this one another time.
+          </p>
+        </div>
+        <button onClick={continueAfterUnresolved} style={btnStyle}>
+          Continue
+        </button>
+      </div>
+    );
+  }
 
   function useHint() {
     setShowHint(true);
@@ -151,6 +237,7 @@ export default function LessonEngine({ chapter, learnerId }) {
   async function choose(option) {
     if (selected) return;
     setSelected(option);
+    const hesitationMs = Date.now() - questionShownAt;
     const errorType = await classifyError(option, question.correct, question, rep.content);
     const wasCorrect = option === question.correct;
 
@@ -160,7 +247,12 @@ export default function LessonEngine({ chapter, learnerId }) {
       eventType: "attempt",
       wasCorrect,
       errorType,
-      payload: { selected: option, representationShown: rep.type, hintsUsed: hintsUsedThisConcept },
+      payload: {
+        selected: option,
+        representationShown: rep.type,
+        hintsUsed: hintsUsedThisConcept,
+        hesitationMs,
+      },
     });
 
     if (!wasCorrect) {
@@ -174,14 +266,28 @@ export default function LessonEngine({ chapter, learnerId }) {
         });
       }
     }
+
+    const signal = getStruggleSignal(learnerId);
+    setWarmthNote(signal === "struggling" ? pickStruggleMessage() : null);
   }
 
   function next() {
     const wasCorrect = selected === question.correct;
+    setWarmthNote(null);
     if (!wasCorrect && repIndex + 1 < concept.representations.length) {
       setRepIndex(repIndex + 1);
       setSelected(null);
       setShowHint(false);
+      return;
+    }
+    if (!wasCorrect) {
+      logEvent({
+        learnerId,
+        conceptId: concept.id,
+        eventType: "concept_unresolved",
+        payload: { representationsTried: concept.representations.length },
+      });
+      setShowUnresolvedNote(true);
       return;
     }
     setRepIndex(0);
@@ -195,8 +301,21 @@ export default function LessonEngine({ chapter, learnerId }) {
     }
   }
 
+  function continueAfterUnresolved() {
+    setShowUnresolvedNote(false);
+    setRepIndex(0);
+    setSelected(null);
+    setHintsUsedThisConcept(0);
+    setShowHint(false);
+    if (conceptIndex + 1 < concepts.length) {
+      setConceptIndex(conceptIndex + 1);
+    } else {
+      setStage("complete");
+    }
+  }
+
   return (
-    <div style={cardStyle}>
+    <div ref={cardRef} style={cardStyle}>
       <div style={{ fontSize: 12, color: "#8A8375", marginBottom: 8 }}>
         {chapter.chapterTitle} · concept {conceptIndex + 1}/{concepts.length}
       </div>
@@ -256,6 +375,11 @@ export default function LessonEngine({ chapter, learnerId }) {
               ? "Nice — that's it."
               : "Not quite — let's look at it a different way."}
           </p>
+          {warmthNote && (
+            <div style={{ background: "#F3EAF6", border: "1px solid #D9C2E0", borderRadius: 10, padding: "10px 14px", marginBottom: 12, fontSize: 14, color: "#5A4463" }}>
+              💜 {warmthNote}
+            </div>
+          )}
           <button onClick={next} style={btnStyle}>
             Continue
           </button>

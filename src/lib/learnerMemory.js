@@ -51,6 +51,36 @@ export function getConceptsDueForRecall(learnerId, minGapMs = 5 * 60 * 1000) {
     .map(([conceptId]) => conceptId);
 }
 
+export function getStruggleSignal(learnerId, lookback = 4) {
+  const events = readEvents().filter((e) => e.learnerId === learnerId);
+  const recentAttempts = events.filter((e) => e.eventType === "attempt").slice(-lookback);
+  if (recentAttempts.length < 2) return "neutral";
+
+  const wrongCount = recentAttempts.filter((e) => !e.wasCorrect).length;
+  const hintHeavyCount = recentAttempts.filter((e) => (e.payload?.hintsUsed || 0) > 0).length;
+  const slowCount = recentAttempts.filter((e) => (e.payload?.hesitationMs || 0) > 15000).length;
+
+  const struggleScore = wrongCount + hintHeavyCount + slowCount;
+  const totalPossible = recentAttempts.length * 2;
+
+  if (struggleScore >= totalPossible * 0.5) return "struggling";
+  if (wrongCount === 0 && hintHeavyCount === 0 && slowCount === 0) return "flowing";
+  return "neutral";
+}
+
+export function getUnresolvedConcepts(learnerId) {
+  const events = readEvents().filter(
+    (e) => e.learnerId === learnerId && e.eventType === "concept_unresolved"
+  );
+  const latestByConceptId = {};
+  events.forEach((e) => {
+    latestByConceptId[e.conceptId] = e.timestamp;
+  });
+  return Object.entries(latestByConceptId)
+    .map(([conceptId, timestamp]) => ({ conceptId, timestamp }))
+    .sort((a, b) => b.timestamp - a.timestamp);
+}
+
 export function getMemorySummary(learnerId) {
   const events = readEvents().filter((e) => e.learnerId === learnerId);
   const concepts = [...new Set(events.map((e) => e.conceptId))];

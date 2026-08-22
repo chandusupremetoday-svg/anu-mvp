@@ -10,7 +10,7 @@ function speak(text) {
   } catch (e) {}
 }
 
-export default function MapMatchActivity({ activity, onComplete }) {
+export default function MapMatchActivity({ activity, onComplete, chapterTitle }) {
   const [phase, setPhase] = useState("teach");
   const [placements, setPlacements] = useState({});
   const [selectedItem, setSelectedItem] = useState(null);
@@ -44,7 +44,7 @@ export default function MapMatchActivity({ activity, onComplete }) {
   if (phase === "teach") {
     return (
       <div style={cardStyle}>
-        <div style={{ fontSize: 12, color: "#8A8375", marginBottom: 8 }}>The Himalayas · concept</div>
+        <div style={{ fontSize: 12, color: "#8A8375", marginBottom: 8 }}>{chapterTitle} · concept</div>
         <h3>{activity.title}</h3>
         <div style={{ background: "#F3EFE4", borderRadius: 14, padding: 16, marginBottom: 16 }}>
           <div style={{ fontSize: 11, textTransform: "uppercase", color: "#9C9585", marginBottom: 6 }}>TEXT</div>
@@ -58,7 +58,7 @@ export default function MapMatchActivity({ activity, onComplete }) {
 
   return (
     <div style={cardStyle}>
-      <div style={{ fontSize: 12, color: "#8A8375", marginBottom: 8 }}>The Himalayas · activity</div>
+      <div style={{ fontSize: 12, color: "#8A8375", marginBottom: 8 }}>{chapterTitle} · activity</div>
       <h3>{activity.title}</h3>
       <p style={{ color: "#5A5346", fontSize: 15 }}>{activity.instructions}</p>
 
