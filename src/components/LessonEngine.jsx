@@ -120,8 +120,10 @@ export default function LessonEngine({ chapter, learnerId }) {
   const [questionShownAt, setQuestionShownAt] = useState(Date.now());
   const [warmthNote, setWarmthNote] = useState(null);
   const [reexplanation, setReexplanation] = useState(null);
+  const [isThinkingExplanation, setIsThinkingExplanation] = useState(false);
   const [showUnresolvedNote, setShowUnresolvedNote] = useState(false);
   const cardRef = useRef(null);
+  const feedbackRef = useRef(null);
 
   const isApproved = Boolean(chapter?.reviewedBy && chapter?.reviewedAt);
 
@@ -166,6 +168,15 @@ export default function LessonEngine({ chapter, learnerId }) {
       cardRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, [conceptIndex, repIndex, showUnresolvedNote]);
+
+  // 2026-08-22: the moment she answers (and again once the AI's explanation
+  // actually arrives and the box grows), follow the screen down to it —
+  // she should never have to hunt or scroll to find her own feedback.
+  useEffect(() => {
+    if (selected && feedbackRef.current) {
+      feedbackRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, [selected, isThinkingExplanation, reexplanation]);
 
   if (concept?.activityType === "match_zones") {
     return (
@@ -244,6 +255,8 @@ export default function LessonEngine({ chapter, learnerId }) {
   async function choose(option) {
     if (selected) return;
     setSelected(option);
+    const wasCorrectGuess = option === question.correct;
+    if (!wasCorrectGuess) setIsThinkingExplanation(true);
     const hesitationMs = Date.now() - questionShownAt;
     const { errorType, reexplanation: newReexplanation } = await classifyError(
       option,
@@ -252,6 +265,7 @@ export default function LessonEngine({ chapter, learnerId }) {
       rep.content
     );
     const wasCorrect = option === question.correct;
+    setIsThinkingExplanation(false);
     setReexplanation(errorType === "knowledge_gap" && newReexplanation ? newReexplanation : null);
 
     logEvent({
@@ -288,6 +302,7 @@ export default function LessonEngine({ chapter, learnerId }) {
     const wasCorrect = selected === question.correct;
     setWarmthNote(null);
     setReexplanation(null);
+    setIsThinkingExplanation(false);
     if (!wasCorrect && repIndex + 1 < concept.representations.length) {
       setRepIndex(repIndex + 1);
       setSelected(null);
@@ -318,6 +333,7 @@ export default function LessonEngine({ chapter, learnerId }) {
   function continueAfterUnresolved() {
     setShowUnresolvedNote(false);
     setReexplanation(null);
+    setIsThinkingExplanation(false);
     setRepIndex(0);
     setSelected(null);
     setHintsUsedThisConcept(0);
@@ -384,15 +400,20 @@ export default function LessonEngine({ chapter, learnerId }) {
       )}
 
       {selected && (
-        <div>
+        <div ref={feedbackRef}>
           <p style={{ fontWeight: 700, color: selected === question.correct ? "#3A6B5C" : "#A8637E" }}>
             {selected === question.correct
               ? "Nice — that's it."
-              : "Not quite — let's look at it a different way."}
+              : "That's okay — let's look at it together."}
           </p>
-          {reexplanation && (
+          {isThinkingExplanation && (
             <div style={{ background: "#EAF1F6", border: "1px solid #C2D6E0", borderRadius: 10, padding: "12px 14px", marginBottom: 12, fontSize: 14, color: "#2E4A5A" }}>
-              🌱 Let's try it a different way: {reexplanation}
+              🌱 Thinking of another way to explain this for you...
+            </div>
+          )}
+          {!isThinkingExplanation && reexplanation && (
+            <div style={{ background: "#EAF1F6", border: "1px solid #C2D6E0", borderRadius: 10, padding: "12px 14px", marginBottom: 12, fontSize: 14, color: "#2E4A5A" }}>
+              🌱 {reexplanation}
             </div>
           )}
           {warmthNote && (

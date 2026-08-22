@@ -43,7 +43,11 @@ Question: "${questionPrompt}"
 Correct answer: "${correctAnswer}"
 Her answer: "${learnerAnswer}"
 
-If, and only if, this is a "knowledge_gap", also write a short re-explanation of the same idea for her, in a DIFFERENT, SIMPLER way than the lesson content above — as if explaining it a second time to a Class 4 child who didn't get it the first time. Do not just repeat the original wording. 1-3 short sentences. Plain, warm, concrete language. No jargon.
+If, and only if, this is a "knowledge_gap", also write a short re-explanation of the same idea for her, in a DIFFERENT, SIMPLER way than the lesson content above — as if a caring adult is sitting beside her, gently exploring the idea together, not correcting her. Follow these rules strictly:
+- Do NOT say or imply she was "wrong," "incorrect," or got it "wrong" — she already sees that from the on-screen colours; don't repeat it in words.
+- Start by gently acknowledging the idea is worth another look together (e.g. "Let's look at this together" or "Here's another way to think about it") rather than restating what she picked.
+- Do not just repeat the original wording — explain it a genuinely different way (a small everyday comparison a Class 4 child would relate to works well).
+- 1-3 short sentences. Plain, warm, concrete language. No jargon. Speak TO her, gently, like a person who believes she can get this.
 
 If this is "expression_only", leave the re-explanation as an empty string — she doesn't need it, she understands the idea already.
 
