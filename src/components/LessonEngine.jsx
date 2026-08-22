@@ -4,6 +4,10 @@ import ReadAlongPhrases from "./ReadAlongPhrases.jsx";
 import { logEvent, getPreferredRepresentation, getConceptsDueForRecall, getStruggleSignal } from "../lib/learnerMemory.js";
 
 let cachedVoice = null;
+let currentAudio = null; // 2026-08-22: tracks whatever sound is playing right now, so a
+// new "Hear this" tap can always stop it first — this is the actual fix for the
+// double-voice/echo bug, which happened because nothing was ever stopping the
+// previous sound before starting a new one.
 function getVoices() {
   return new Promise((resolve) => {
     let voices = window.speechSynthesis.getVoices();
@@ -12,11 +16,24 @@ function getVoices() {
   });
 }
 
+function stopAnyCurrentAudio() {
+  if (currentAudio) {
+    try {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    } catch (e) {}
+    currentAudio = null;
+  }
+  try {
+    window.speechSynthesis.cancel();
+  } catch (e) {}
+}
+
 // The old robotic browser voice — kept as a safe fallback only now.
 async function speakFallback(text) {
   try {
+    stopAnyCurrentAudio();
     if (!window.speechSynthesis) return;
-    window.speechSynthesis.cancel();
     const u = new window.SpeechSynthesisUtterance(text);
     if (!cachedVoice) {
       const voices = await getVoices();
@@ -43,9 +60,13 @@ async function speakFallback(text) {
 async function speak(text, languageCode = "te-IN") {
   const cacheKey = `anu_voice_${languageCode}_${text}`;
   try {
+    stopAnyCurrentAudio();
+
     const cached = localStorage.getItem(cacheKey);
     if (cached) {
-      new Audio(`data:audio/wav;base64,${cached}`).play();
+      const audio = new Audio(`data:audio/wav;base64,${cached}`);
+      currentAudio = audio;
+      audio.play();
       return;
     }
 
@@ -63,7 +84,10 @@ async function speak(text, languageCode = "te-IN") {
         } catch (e) {
           // storage full or unavailable — still fine, just won't cache this one
         }
-        new Audio(`data:audio/wav;base64,${data.audio}`).play();
+        stopAnyCurrentAudio(); // in case another tap happened while we were waiting
+        const audio = new Audio(`data:audio/wav;base64,${data.audio}`);
+        currentAudio = audio;
+        audio.play();
         return;
       }
     }
