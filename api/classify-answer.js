@@ -30,11 +30,11 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: "claude-haiku-4-5-20251001",
-        max_tokens: 150,
+        max_tokens: 300,
         messages: [
           {
             role: "user",
-            content: `A child answered a question wrong. Decide, based on the answer she picked, whether this looks like:
+            content: `A child answered a question wrong. First, decide, based on the answer she picked, whether this looks like:
 - "knowledge_gap": she likely doesn't understand the underlying idea yet, OR
 - "expression_only": she may understand the idea but picked the wrong option for another reason (misread the choices, clicked too fast, etc.)
 
@@ -43,7 +43,14 @@ Question: "${questionPrompt}"
 Correct answer: "${correctAnswer}"
 Her answer: "${learnerAnswer}"
 
-Respond with ONLY one word: either knowledge_gap or expression_only. Nothing else.`,
+If, and only if, this is a "knowledge_gap", also write a short re-explanation of the same idea for her, in a DIFFERENT, SIMPLER way than the lesson content above — as if explaining it a second time to a Class 4 child who didn't get it the first time. Do not just repeat the original wording. 1-3 short sentences. Plain, warm, concrete language. No jargon.
+
+If this is "expression_only", leave the re-explanation as an empty string — she doesn't need it, she understands the idea already.
+
+Respond with ONLY valid JSON, nothing else, no markdown fences, in exactly this shape:
+{"errorType": "knowledge_gap", "reexplanation": "..."}
+or
+{"errorType": "expression_only", "reexplanation": ""}`,
           },
         ],
       }),
@@ -54,17 +61,30 @@ Respond with ONLY one word: either knowledge_gap or expression_only. Nothing els
     if (!response.ok) {
       const errText = await response.text();
       console.error("Anthropic API error:", errText);
-      return res.status(200).json({ errorType: "knowledge_gap", fallback: true });
+      return res.status(200).json({ errorType: "knowledge_gap", reexplanation: "", fallback: true });
     }
 
     const data = await response.json();
-    const raw = (data.content?.[0]?.text || "").trim().toLowerCase();
-    const errorType = raw.includes("expression") ? "expression_only" : "knowledge_gap";
-    console.log("STEP 6: success, errorType =", errorType);
+    const raw = (data.content?.[0]?.text || "").trim();
+    const cleaned = raw.replace(/^```json\s*|^```\s*|```\s*$/g, "").trim();
 
-    return res.status(200).json({ errorType });
+    let errorType = "knowledge_gap";
+    let reexplanation = "";
+    try {
+      const parsed = JSON.parse(cleaned);
+      errorType = parsed.errorType === "expression_only" ? "expression_only" : "knowledge_gap";
+      reexplanation = typeof parsed.reexplanation === "string" ? parsed.reexplanation : "";
+    } catch (parseErr) {
+      console.error("STEP 6b: could not parse JSON from model, raw was:", raw);
+      errorType = cleaned.toLowerCase().includes("expression") ? "expression_only" : "knowledge_gap";
+      reexplanation = "";
+    }
+
+    console.log("STEP 6: success, errorType =", errorType, "has reexplanation:", Boolean(reexplanation));
+
+    return res.status(200).json({ errorType, reexplanation });
   } catch (e) {
     console.error("classify-answer failed:", e.message);
-    return res.status(200).json({ errorType: "knowledge_gap", fallback: true });
+    return res.status(200).json({ errorType: "knowledge_gap", reexplanation: "", fallback: true });
   }
 }

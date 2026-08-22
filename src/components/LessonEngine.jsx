@@ -83,8 +83,11 @@ function pickStruggleMessage() {
   return STRUGGLE_MESSAGES[Math.floor(Math.random() * STRUGGLE_MESSAGES.length)];
 }
 
+// Returns { errorType, reexplanation } instead of just errorType now, 2026-08-22.
+// This is the first place the classification result actually changes what the
+// child sees, instead of only being logged (see BUILD_LOG.md, this date).
 async function classifyError(selectedOption, correctOption, question, conceptText) {
-  if (selectedOption === correctOption) return null;
+  if (selectedOption === correctOption) return { errorType: null, reexplanation: "" };
   try {
     const res = await fetch("/api/classify-answer", {
       method: "POST",
@@ -98,9 +101,12 @@ async function classifyError(selectedOption, correctOption, question, conceptTex
     });
     if (!res.ok) throw new Error("backend not available");
     const data = await res.json();
-    return data.errorType || "knowledge_gap";
+    return {
+      errorType: data.errorType || "knowledge_gap",
+      reexplanation: data.reexplanation || "",
+    };
   } catch (e) {
-    return "knowledge_gap";
+    return { errorType: "knowledge_gap", reexplanation: "" };
   }
 }
 
@@ -113,6 +119,7 @@ export default function LessonEngine({ chapter, learnerId }) {
   const [stage, setStage] = useState("blocked-check");
   const [questionShownAt, setQuestionShownAt] = useState(Date.now());
   const [warmthNote, setWarmthNote] = useState(null);
+  const [reexplanation, setReexplanation] = useState(null);
   const [showUnresolvedNote, setShowUnresolvedNote] = useState(false);
   const cardRef = useRef(null);
 
@@ -238,8 +245,14 @@ export default function LessonEngine({ chapter, learnerId }) {
     if (selected) return;
     setSelected(option);
     const hesitationMs = Date.now() - questionShownAt;
-    const errorType = await classifyError(option, question.correct, question, rep.content);
+    const { errorType, reexplanation: newReexplanation } = await classifyError(
+      option,
+      question.correct,
+      question,
+      rep.content
+    );
     const wasCorrect = option === question.correct;
+    setReexplanation(errorType === "knowledge_gap" && newReexplanation ? newReexplanation : null);
 
     logEvent({
       learnerId,
@@ -274,6 +287,7 @@ export default function LessonEngine({ chapter, learnerId }) {
   function next() {
     const wasCorrect = selected === question.correct;
     setWarmthNote(null);
+    setReexplanation(null);
     if (!wasCorrect && repIndex + 1 < concept.representations.length) {
       setRepIndex(repIndex + 1);
       setSelected(null);
@@ -303,6 +317,7 @@ export default function LessonEngine({ chapter, learnerId }) {
 
   function continueAfterUnresolved() {
     setShowUnresolvedNote(false);
+    setReexplanation(null);
     setRepIndex(0);
     setSelected(null);
     setHintsUsedThisConcept(0);
@@ -375,6 +390,11 @@ export default function LessonEngine({ chapter, learnerId }) {
               ? "Nice — that's it."
               : "Not quite — let's look at it a different way."}
           </p>
+          {reexplanation && (
+            <div style={{ background: "#EAF1F6", border: "1px solid #C2D6E0", borderRadius: 10, padding: "12px 14px", marginBottom: 12, fontSize: 14, color: "#2E4A5A" }}>
+              🌱 Let's try it a different way: {reexplanation}
+            </div>
+          )}
           {warmthNote && (
             <div style={{ background: "#F3EAF6", border: "1px solid #D9C2E0", borderRadius: 10, padding: "10px 14px", marginBottom: 12, fontSize: 14, color: "#5A4463" }}>
               💜 {warmthNote}
