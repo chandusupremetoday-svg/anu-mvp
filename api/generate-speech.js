@@ -31,7 +31,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         text,
-        target_language_code: languageCode || "te-IN",
+        target_language_code: languageCode || "en-IN",
         speaker: speaker || "shubh",
         model: "bulbul:v3",
         pace: 1,

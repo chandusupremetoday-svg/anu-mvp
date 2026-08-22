@@ -57,7 +57,7 @@ async function speakFallback(text) {
 // forever architecture, which needs shared storage (Supabase) to work
 // across different children/devices. This version only saves repeat
 // calls for one child, one browser — real, but limited on purpose.
-async function speak(text, languageCode = "te-IN") {
+async function speak(text, languageCode = "en-IN") {
   const cacheKey = `anu_voice_${languageCode}_${text}`;
   try {
     stopAnyCurrentAudio();
@@ -95,6 +95,41 @@ async function speak(text, languageCode = "te-IN") {
   } catch (e) {
     speakFallback(text);
   }
+}
+
+// 2026-08-22: ANU is a teaching platform, not a reading platform — so
+// "Hear this" should explain the idea out loud, not narrate the exact
+// on-screen paragraph. This asks the AI once per concept for a
+// different, simpler SPOKEN explanation, caches that explanation text
+// (separately from the audio cache above), and hands THAT to speak()
+// instead of the raw written text. If anything here fails, it quietly
+// falls back to narrating the original written text — a lesson can
+// never break because of this.
+async function getSpokenExplanation(writtenText, conceptId, repType, conceptTitle, chapterTitle) {
+  const cacheKey = `anu_narration_v1_${conceptId}_${repType}`;
+  try {
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) return cached;
+  } catch (e) {}
+
+  try {
+    const res = await fetch("/api/generate-narration", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ writtenText, conceptTitle, chapterTitle }),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.narration) {
+        try {
+          localStorage.setItem(cacheKey, data.narration);
+        } catch (e) {}
+        return data.narration;
+      }
+    }
+  } catch (e) {}
+
+  return writtenText; // honest fallback: at least still says something correct
 }
 
 const STRUGGLE_MESSAGES = [
@@ -145,6 +180,7 @@ export default function LessonEngine({ chapter, learnerId }) {
   const [warmthNote, setWarmthNote] = useState(null);
   const [reexplanation, setReexplanation] = useState(null);
   const [isThinkingExplanation, setIsThinkingExplanation] = useState(false);
+  const [isNarrating, setIsNarrating] = useState(false);
   const [showUnresolvedNote, setShowUnresolvedNote] = useState(false);
   const cardRef = useRef(null);
   const feedbackRef = useRef(null);
@@ -263,6 +299,23 @@ export default function LessonEngine({ chapter, learnerId }) {
         </button>
       </div>
     );
+  }
+
+  async function hearExplanation() {
+    if (isNarrating) return;
+    setIsNarrating(true);
+    try {
+      const explanation = await getSpokenExplanation(
+        rep.content,
+        concept.id,
+        rep.type,
+        concept.title,
+        chapter.chapterTitle
+      );
+      await speak(explanation, "en-IN");
+    } finally {
+      setIsNarrating(false);
+    }
   }
 
   function useHint() {
@@ -387,8 +440,8 @@ export default function LessonEngine({ chapter, learnerId }) {
             {rep.type.replace("_", " ")}
           </div>
           <p style={{ margin: 0 }}>{rep.content}</p>
-          <button onClick={() => speak(rep.content)} style={smallBtnStyle}>
-            🔊 Hear this
+          <button onClick={hearExplanation} style={smallBtnStyle} disabled={isNarrating}>
+            {isNarrating ? "🔊 Thinking of how to explain this..." : "🔊 Hear this"}
           </button>
         </div>
       )}
