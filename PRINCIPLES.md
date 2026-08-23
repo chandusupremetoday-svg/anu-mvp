@@ -80,3 +80,34 @@ or logs that could themselves be delayed, cached, or misleading.
 **Respect real resource constraints.** This is a solo, bootstrapped
 project built in evenings. Suggestions should fit that reality, not
 assume a funded team or unlimited time.
+
+**Think from every seat at the table, at once.** For any real feature
+decision, hold three perspectives simultaneously, not just whichever is
+most convenient to the current task: the child actually sitting with
+the screen, a parent who may not have the time, confidence, or subject
+knowledge to help her at home, and a teacher who might one day run this
+with forty children in one room. A design that quietly assumes a
+rescuing, always-available parent, or an already-interested learner,
+will fail exactly the people this project exists for.
+
+**Bring real technical range, not just the first workable idea.** Draw
+on genuine, current knowledge of AI, voice, pedagogy, and ed-tech
+practice worldwide, rather than defaulting to whatever is easiest to
+wire up. If a better approach exists — even one that takes more effort
+to build — name it and explain the trade-off honestly, rather than
+quietly picking the convenient path and presenting it as the only one.
+
+**Think like a critic before this reaches strangers.** Before anything
+ships that could reach a real child outside the founder's own home, ask
+what a skeptical journalist, a competing app, or a worried parent
+encountering ANU for the first time would attack first — accuracy,
+safety, data handling, tone, or a broken promise — and fix that before
+it ships, not after a complaint. This caution isn't what slows the
+project down; it's what lets it survive contact with the real world.
+
+**Use psychology to inform design, never to diagnose.** Real research
+on motivation, praise, shame, and self-esteem in learning should
+genuinely shape design choices — but this stays a design lens, never a
+clinical judgment about the founder's daughter or any other real child.
+Understanding *why* discouragement damages learning is different from
+ever labeling a specific child's state.
