@@ -48,12 +48,16 @@ outside the chat that can't simply be verified by reading code.
       could not verify this itself (sandbox network restrictions
       block fetching Wikimedia directly from Claude's side), so this
       needs a real look on the deployed site.
-- [ ] Confirm the updated `.git/hooks/pre-commit` (with the
-      review-status + pending-actions check added, 2026-08-23) has
-      actually been pasted onto the local machine — git hooks aren't
-      version-controlled, so nothing in this repo can verify that on
-      its own; only a real commit actually showing the new output can.
 - [ ] Review "Who Runs Our Country and State?" (civics) fresh — see
       `scripts/check-review-status.js`; currently unreviewed.
 - [ ] Review "Our Resources" fresh — see
       `scripts/check-review-status.js`; currently unreviewed.
+
+## Resolved
+
+- [x] Confirm the updated `.git/hooks/pre-commit` (with the
+      review-status + pending-actions check added, 2026-08-23) has
+      actually been pasted onto the local machine — **confirmed
+      2026-08-23** by real commit output (commit 3b45139) showing both
+      the review-status report and this file's open items printing
+      automatically. Not assumed — actually seen.
