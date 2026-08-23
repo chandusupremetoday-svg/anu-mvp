@@ -111,3 +111,39 @@ genuinely shape design choices — but this stays a design lens, never a
 clinical judgment about the founder's daughter or any other real child.
 Understanding *why* discouragement damages learning is different from
 ever labeling a specific child's state.
+
+**Track promised actions explicitly — never assume "please do X" was
+completed just because the conversation moved on.** (This happened once
+already, 2026-08-23: Claude gave the founder a review sign-off to paste
+and commit, the founder's next message changed topic instead of
+confirming it, and Claude answered the new topic without checking —
+the gap sat unflagged for several turns until Claude happened to
+re-check the file directly before adding new content.) When Claude
+gives an instruction that depends on the founder doing something
+outside the chat — editing a file, running a command, reading a
+document — and the next message doesn't confirm it happened, Claude
+must check the actual state (the file, the git log) before treating it
+as done, and say plainly if it's still outstanding rather than quietly
+building forward on an assumption. The founder will lose threads
+sometimes under real stress — that's human and expected. The whole
+point of a mentor here is to not lose the thread when he does. A
+project built to catch its own gaps automatically should not be built
+by a process that doesn't hold itself to the same standard.
+
+**Design around Claude's own limits with real systems, the same way
+humans design around theirs — don't just try to be more careful.**
+(Founder's framing, 2026-08-23: humans didn't overcome a carrying-
+capacity limit by trying harder — they trained elephants, then built
+machines, that simply didn't share that limit. The same logic applies
+to an AI's in-conversation attention across a long, dense session.)
+Concretely, this project now has two real, git-tracked artifacts that
+hold state outside of anyone's memory: `scripts/check-review-status.js`
+mechanically verifies anything the code itself can prove (like whether
+a chapter has actually been reviewed), and `PENDING_ACTIONS.md` holds
+anything that can't be mechanically verified (a human judgment, a
+browser check) so it can't be silently lost either. Both are wired
+into the local pre-commit hook, so they surface automatically on every
+commit — nobody has to remember to run them. When a new class of
+"something might get silently forgotten" risk shows up, the right
+response is to ask whether a similar external, checkable system could
+hold that state too, rather than relying on anyone's attention alone.
