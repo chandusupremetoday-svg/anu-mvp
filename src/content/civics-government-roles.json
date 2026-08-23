@@ -3,9 +3,9 @@
   "subject": "Civics",
   "gradeBand": "class-4",
   "language": "en",
-  "reviewedBy": "Purna",
-  "reviewedAt": "16-08-2026",
-  "_comment": "reviewedBy/reviewedAt must be filled in by a human reviewer (CNT-003) before this chapter is ever shown to a learner. This is a foundational, deliberately narrow slice of the Class 7 NCERT 'How the State Government Works' chapter (gess303.pdf) — scoped down to basic role identification (President/PM/Governor/CM) rather than the full election-mechanics/majority/coalition content, which is genuinely more advanced and deferred to a later phase.",
+  "reviewedBy": "",
+  "reviewedAt": "",
+  "_comment": "reviewedBy/reviewedAt must be filled in by a human reviewer (CNT-003) before this chapter is ever shown to a learner. IMPORTANT: this chapter was previously reviewed (Purna, 16-08-2026), but reviewedBy/reviewedAt were reset to empty on 2026-08-23 because two brand-new, never-reviewed concepts were added below. The review gate works at the whole-chapter level, not per-concept — so leaving the old sign-off in place would have let unreviewed new content reach a learner silently. The whole chapter (old + new content) needs a fresh look, even though the original two concepts haven't changed. Added 2026-08-23: (1) a 2x2 grid activity distinguishing PM/President (national) and CM/Governor (state) by WHO RUNS THINGS DAILY vs WHO IS CEREMONIAL — this is a genuinely different, harder distinction than the existing central-vs-state concept below, built after the founder described exactly this confusion in his daughter. (2) A South Indian state-capitals matching activity (5 states, not all of India — same 'fewer facts held tighter' principle used elsewhere), built after the founder described teaching state capitals as another real, ongoing struggle. Andhra Pradesh's capital was independently verified via web search 2026-08-23, since this specific fact has genuinely changed in recent Indian political history: Amaravati was confirmed by Parliament as the sole, permanent capital in April 2026, ending years of uncertainty — this is now settled, current fact, not a guess. Both new activities are wired into ANU's existing spaced-recall memory system (via learnerId + logEvent in MapMatchActivity), so correct/incorrect placements here now count toward getConceptsDueForRecall the same way quiz questions already do — practiced for lasting recall, not just a one-time game.",
   "concepts": [
     {
       "id": "flag-hoisting-hook",
@@ -49,6 +49,50 @@
         { "id": "pm", "label": "Prime Minister", "correctZone": "central" },
         { "id": "governor", "label": "Governor", "correctZone": "state" },
         { "id": "cm", "label": "Chief Minister", "correctZone": "state" }
+      ]
+    },
+    {
+      "id": "daily-runner-vs-ceremonial",
+      "title": "Who actually runs things every day?",
+      "sourceRef": "Original teaching device (2x2 structure), built 2026-08-23 from the same NCERT role definitions already used in this chapter, specifically to target a confusion the founder described experiencing while teaching this content directly",
+      "provenance": "source",
+      "activityType": "match_zones",
+      "teachingText": "You already know the Prime Minister and President both work for the whole country, and the Chief Minister and Governor both work for just your state. But there's a second difference too — some of these leaders run things every single day, while others mostly represent their country or state on big, special occasions.",
+      "instructions": "Now place each leader into the box that matches BOTH what they do and where.",
+      "zones": [
+        { "id": "national-daily", "label": "Runs the country every day", "color": "#E6F1FB" },
+        { "id": "national-occasion", "label": "Represents the country on big occasions", "color": "#FAEEDA" },
+        { "id": "state-daily", "label": "Runs the state every day", "color": "#E6F1FB" },
+        { "id": "state-occasion", "label": "Represents the state on big occasions", "color": "#FAEEDA" }
+      ],
+      "items": [
+        { "id": "pm2", "label": "Prime Minister", "correctZone": "national-daily" },
+        { "id": "president2", "label": "President", "correctZone": "national-occasion" },
+        { "id": "cm2", "label": "Chief Minister", "correctZone": "state-daily" },
+        { "id": "governor2", "label": "Governor", "correctZone": "state-occasion" }
+      ]
+    },
+    {
+      "id": "south-indian-capitals",
+      "title": "Which city is each state's capital?",
+      "sourceRef": "Standard current civics/geography fact. Andhra Pradesh's capital specifically re-verified via web search 2026-08-23: Amaravati was confirmed by an Act of Parliament (April 2026) as the sole, permanent capital, ending years of prior political uncertainty — current and settled as of this writing, not assumed from older knowledge.",
+      "provenance": "source",
+      "activityType": "match_zones",
+      "teachingText": "Remember how the Chief Minister works from their state's capital city? Let's start with 5 states close to home, in the south of India, and match each one to its real capital city.",
+      "instructions": "Place each capital city into the state it actually belongs to.",
+      "zones": [
+        { "id": "ap", "label": "Andhra Pradesh", "color": "#EAF3EF" },
+        { "id": "telangana", "label": "Telangana", "color": "#FDF4E3" },
+        { "id": "karnataka", "label": "Karnataka", "color": "#F3EAF6" },
+        { "id": "tamilnadu", "label": "Tamil Nadu", "color": "#E6F1FB" },
+        { "id": "kerala", "label": "Kerala", "color": "#EAF3DE" }
+      ],
+      "items": [
+        { "id": "amaravati", "label": "Amaravati", "correctZone": "ap" },
+        { "id": "hyderabad", "label": "Hyderabad", "correctZone": "telangana" },
+        { "id": "bengaluru", "label": "Bengaluru", "correctZone": "karnataka" },
+        { "id": "chennai", "label": "Chennai", "correctZone": "tamilnadu" },
+        { "id": "thiruvananthapuram", "label": "Thiruvananthapuram", "correctZone": "kerala" }
       ]
     }
   ]

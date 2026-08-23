@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { logEvent } from "../lib/learnerMemory.js";
 
 function speak(text) {
   try {
@@ -10,7 +11,7 @@ function speak(text) {
   } catch (e) {}
 }
 
-export default function MapMatchActivity({ activity, onComplete, chapterTitle }) {
+export default function MapMatchActivity({ activity, onComplete, chapterTitle, learnerId }) {
   const [phase, setPhase] = useState("teach");
   const [placements, setPlacements] = useState({});
   const [selectedItem, setSelectedItem] = useState(null);
@@ -19,9 +20,27 @@ export default function MapMatchActivity({ activity, onComplete, chapterTitle })
   const remainingItems = activity.items.filter((item) => !placements[item.id]);
   const allDone = remainingItems.length === 0;
 
+  // 2026-08-23: these hands-on placement activities previously weren't
+  // remembered by ANU at all — a correct or wrong placement here vanished
+  // the moment the screen changed. Logging each placement as a real
+  // "attempt" event plugs this activity into the SAME spaced-recall system
+  // (getConceptsDueForRecall, getStruggleSignal) that quiz-style concepts
+  // already use — no new memory logic needed, just feeding it real data.
+  // This is what turns a fun one-off game into something practiced for
+  // real, lasting recall, not just tonight's session.
   function tryPlace(itemId, zoneId) {
     const item = activity.items.find((i) => i.id === itemId);
-    if (item.correctZone === zoneId) {
+    const wasCorrect = item.correctZone === zoneId;
+    if (learnerId) {
+      logEvent({
+        learnerId,
+        conceptId: activity.id,
+        eventType: "attempt",
+        wasCorrect,
+        payload: { selected: item.label, triedZone: zoneId },
+      });
+    }
+    if (wasCorrect) {
       setPlacements((p) => ({ ...p, [itemId]: zoneId }));
       setSelectedItem(null);
       speak(`${item.label} — correct!`);
@@ -68,13 +87,26 @@ export default function MapMatchActivity({ activity, onComplete, chapterTitle })
     );
   }
 
+  // 2026-08-23: 4-zone activities (like the PM/President/CM/Governor
+  // distinction) now render as a real 2x2 grid instead of a tall vertical
+  // stack — the grid shape itself is part of the memory device, not just
+  // decoration. Activities with 2-3 or 5+ zones keep the original stacked
+  // layout, since a 2x2 grid only makes sense for exactly 4 categories.
+  const useGridLayout = activity.zones.length === 4;
+
   return (
     <div style={cardStyle}>
       <div style={{ fontSize: 12, color: "#8A8375", marginBottom: 8 }}>{chapterTitle} · activity</div>
       <h3>{activity.title}</h3>
       <p style={{ color: "#5A5346", fontSize: 15 }}>{activity.instructions}</p>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 20 }}>
+      <div
+        style={
+          useGridLayout
+            ? { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 20 }
+            : { display: "flex", flexDirection: "column", gap: 10, marginBottom: 20 }
+        }
+      >
         {activity.zones.map((zone) => (
           <div
             key={zone.id}
@@ -91,7 +123,7 @@ export default function MapMatchActivity({ activity, onComplete, chapterTitle })
               transition: "border 0.2s",
             }}
           >
-            <div style={{ fontWeight: 700, marginBottom: 6 }}>{zone.label}</div>
+            <div style={{ fontWeight: 700, marginBottom: 6, fontSize: useGridLayout ? 14 : 16 }}>{zone.label}</div>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               {activity.items
                 .filter((i) => placements[i.id] === zone.id)

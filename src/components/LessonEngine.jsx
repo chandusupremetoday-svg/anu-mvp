@@ -278,6 +278,7 @@ export default function LessonEngine({ chapter, learnerId }) {
       <MapMatchActivity
         activity={concept}
         chapterTitle={chapter.chapterTitle}
+        learnerId={learnerId}
         onComplete={() => {
           setConceptIndex(conceptIndex + 1 < concepts.length ? conceptIndex + 1 : conceptIndex);
           if (conceptIndex + 1 >= concepts.length) setStage("complete");
