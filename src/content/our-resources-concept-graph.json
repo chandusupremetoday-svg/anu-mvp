@@ -5,7 +5,7 @@
   "language": "en",
   "reviewedBy": "",
   "reviewedAt": "",
-  "_comment": "reviewedBy/reviewedAt must be filled in by a human reviewer (CNT-003) before this chapter is ever shown to a learner. Built 2026-08-22 from the founder's daughter's own Class 4 Social Studies textbook, Chapter 8 'Our Resources'. All wording is original/paraphrased, not copied from the textbook. Revised same day to add: (1) real, properly CC-licensed photographs (Wikimedia Commons) on the dam and minerals concepts, and (2) a personal, local-life connection sentence in every concept, tied to Vijayawada/the Krishna river/Machilipatnam aquaculture, per the founder's explicit feedback that generic explanation alone wasn't enough. Founder caught and corrected a factual error in an earlier draft: Nagarjuna Sagar Dam is on the Krishna river but is NOT near Vijayawada — it's about 190km away, near the Telangana/Andhra Pradesh border (Nalgonda/Palnadu districts). Verified via web search 2026-08-22 and corrected below. Intended as a genuine retention test: founder plans to stay silent for ~5 days after she completes this, then check what she can explain unaided.",
+  "_comment": "reviewedBy/reviewedAt must be filled in by a human reviewer (CNT-003) before this chapter is ever shown to a learner. Built 2026-08-22 from the founder's daughter's own Class 4 Social Studies textbook, Chapter 8 'Our Resources'. All wording is original/paraphrased, not copied from the textbook. Revised 2026-08-22 to add real CC-licensed photographs and personal Vijayawada/Machilipatnam life connections. Note: an earlier reviewedBy='Purna'/reviewedAt='2026-08-23' sign-off was drafted but never actually confirmed/committed by the founder before the conversation moved to a different topic — so this has never genuinely been reviewed yet, nothing was silently skipped. Revised again 2026-08-23 to add a hands-on mineral-to-state matching activity (Iron/Jharkhand, Coal/West Bengal, Petroleum/Assam) right after the concept that introduces those facts as text — giving her real retrieval practice for exactly the kind of arbitrary paired fact she struggles with, matching the same pattern just built for the civics chapter's PM/President/CM/Governor and state-capitals activities. Wired into the same spaced-recall memory system via MapMatchActivity's existing learnerId/logEvent hookup — no additional code changes needed for this activity to be remembered over time.",
   "concepts": [
     {
       "id": "natural-resource-intro",
@@ -188,6 +188,25 @@
           "options": ["Petroleum", "Iron", "Mica"],
           "correct": "Petroleum"
         }
+      ]
+    },
+    {
+      "id": "minerals-by-state-matching",
+      "title": "Match each mineral to where it comes from",
+      "sourceRef": "Original hands-on practice activity built 2026-08-23 for the same mineral-state facts just introduced in 'Where India's key minerals come from' — added after the founder described exactly this kind of arbitrary paired fact as a real, ongoing struggle for his daughter",
+      "provenance": "source",
+      "activityType": "match_zones",
+      "teachingText": "You just read that Iron, Coal, and Petroleum each come from a different part of India. Instead of reading it again, let's practice it with your hands — place each mineral into the state it's mainly mined in.",
+      "instructions": "Place each mineral into the state where it's mainly mined.",
+      "zones": [
+        { "id": "jharkhand", "label": "Jharkhand", "color": "#EAF3EF" },
+        { "id": "westbengal", "label": "West Bengal", "color": "#FDF4E3" },
+        { "id": "assam", "label": "Assam", "color": "#F3EAF6" }
+      ],
+      "items": [
+        { "id": "iron2", "label": "Iron", "correctZone": "jharkhand" },
+        { "id": "coal2", "label": "Coal", "correctZone": "westbengal" },
+        { "id": "petroleum2", "label": "Petroleum", "correctZone": "assam" }
       ]
     },
     {
