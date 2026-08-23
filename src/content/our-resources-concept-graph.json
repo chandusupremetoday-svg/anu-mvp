@@ -5,22 +5,22 @@
   "language": "en",
   "reviewedBy": "",
   "reviewedAt": "",
-  "_comment": "reviewedBy/reviewedAt must be filled in by a human reviewer (CNT-003) before this chapter is ever shown to a learner. Built 2026-08-22 from the founder's daughter's own Class 4 Social Studies textbook, Chapter 8 'Our Resources'. All wording is original/paraphrased, not copied from the textbook. Revised 2026-08-22 to add real CC-licensed photographs and personal Vijayawada/Machilipatnam life connections. Note: an earlier reviewedBy='Purna'/reviewedAt='2026-08-23' sign-off was drafted but never actually confirmed/committed by the founder before the conversation moved to a different topic — so this has never genuinely been reviewed yet, nothing was silently skipped. Revised again 2026-08-23 to add a hands-on mineral-to-state matching activity (Iron/Jharkhand, Coal/West Bengal, Petroleum/Assam) right after the concept that introduces those facts as text — giving her real retrieval practice for exactly the kind of arbitrary paired fact she struggles with, matching the same pattern just built for the civics chapter's PM/President/CM/Governor and state-capitals activities. Wired into the same spaced-recall memory system via MapMatchActivity's existing learnerId/logEvent hookup — no additional code changes needed for this activity to be remembered over time.",
+  "_comment": "reviewedBy/reviewedAt must be filled in by a human reviewer (CNT-003) before this chapter is ever shown to a learner. Originally built 2026-08-22 from the founder's daughter's own Class 4 Social Studies textbook, Chapter 8 'Our Resources'. Fully rewritten 2026-08-23 into narrative form, following the founder's own core project thesis: his daughter (like most children, per real research) retains episodic/narrative memory far better than disconnected factual statements — grounded in Jerome Bruner's distinction between paradigmatic and narrative cognitive modes, and Stein & Glenn's story-grammar research on how children naturally structure narrative memory. Every story beat below IS a required fact, not decoration — deliberately avoiding the 'seductive details effect' (Garner et al.), where irrelevant-but-engaging story elements measurably REDUCE retention of the actual content by competing for attention. Structure used throughout: a real problem -> real action taken -> each original fact reframed as a direct consequence -> resolution, tied to Vijayawada/Machilipatnam where genuinely accurate. IMPORTANT CORRECTION in this revision: earlier drafts incorrectly implied the Prakasam Barrage (Vijayawada) generates hydroelectric power. Verified via web search 2026-08-23 against Wikipedia, the Andhra Pradesh government's own Krishna District Irrigation Circle page, and ICID historical records: Prakasam Barrage's real, confirmed functions are irrigation, drinking water supply, and flood control — NOT power generation, which happens at a different nearby structure (Nagarjuna Sagar, already correctly noted as ~190km away). Founder caught this error himself before it could reach a learner.",
   "concepts": [
     {
       "id": "natural-resource-intro",
       "title": "What is a natural resource?",
-      "sourceRef": "Paraphrased from textbook Ch.8 intro, 'Natural Resources' section",
+      "sourceRef": "Paraphrased from textbook Ch.8 intro, 'Natural Resources' section; rewritten in narrative form 2026-08-23",
       "provenance": "source",
       "hint": "Think about things nobody built or made — they were just already there, waiting for us.",
       "representations": [
         {
           "type": "text",
-          "content": "A natural resource is anything nature gives us for free, without anyone having to make it. Water, air, sunlight, minerals and forests are all natural resources. We need them every single day just to survive. Even the water in the ponds near Machilipatnam that your own family works with started out as a natural resource, long before anyone used it for anything."
+          "content": "One morning, look around before you even leave your bed. Sunlight is already coming through the window. The water you'll drink at breakfast came from a river or a well. Even the walls of your house were built using minerals dug from the ground. Nobody made any of these — nature gave them to us for free, and we call them natural resources. Even the water in the ponds near Machilipatnam that your own family works with started out exactly this way, long before anyone used it for anything."
         },
         {
           "type": "narration",
-          "content": "Nobody built the sun. Nobody built rivers or mountains full of minerals. Nature just gave them to us — and we couldn't survive a single day without them."
+          "content": "Think about your school bag — someone stitched it, someone designed it. Now think about the sun, or a river. Nobody stitched those, nobody designed them. Nature simply gave them to us, ready to use — and without them, none of the things people make would even be possible."
         }
       ],
       "checkQuestions": [
@@ -35,17 +35,17 @@
     {
       "id": "water-importance",
       "title": "Why water matters so much",
-      "sourceRef": "Paraphrased from textbook Ch.8, 'Water Resources and Their Importance'",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Water Resources and Their Importance'; rewritten in narrative form 2026-08-23",
       "provenance": "source",
       "hint": "Think of everything you personally use water for in one single day — that's most of the answer.",
       "representations": [
         {
           "type": "text",
-          "content": "Water is essential for every living being. We use it for drinking, cleaning, washing, and growing our food through irrigation. It's also used for fishing, for boats to travel on (navigation), and even to make electricity — which is called hydroelectric power. Your own family's aquaculture ponds near Machilipatnam are a real example of water being used for fish farming — the exact same water resource this lesson is talking about."
+          "content": "Follow one drop of water through a single day. In the morning, it's what you drink and wash with. By afternoon, it might be flowing through a canal into a farmer's field, helping rice grow. By evening, the same river might be carrying a fishing boat home, or spinning machines inside a dam to make electricity for your lights. One resource, doing many different jobs, all in one day. Your own family's aquaculture ponds near Machilipatnam are a real part of this same journey — water being used for fish farming, the exact same water resource this lesson is talking about."
         },
         {
           "type": "narration",
-          "content": "Think about your whole morning — brushing your teeth, the food your family cooks, even the lights in your house. Water touches almost all of it, in ways you don't usually notice."
+          "content": "Imagine every use of water in your house disappeared for just one day — no drinking, no washing, no cooking. That's how essential this one resource really is, and it's doing all of this at once, for millions of people, every single day."
         }
       ],
       "checkQuestions": [
@@ -60,17 +60,17 @@
     {
       "id": "rivers-of-india",
       "title": "Where our rivers come from",
-      "sourceRef": "Paraphrased from textbook Ch.8, 'Rivers' section",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Rivers' section; rewritten in narrative form 2026-08-23",
       "provenance": "source",
       "hint": "One kind of river never runs dry because snow keeps melting. The other kind depends completely on rain.",
       "representations": [
         {
           "type": "text",
-          "content": "India has two kinds of rivers. Perennial rivers, like the Ganga and Brahmaputra, start in the Himalayas and flow all year round because they're fed by melting snow and ice. Seasonal (peninsular) rivers, like the Krishna and Kaveri, depend on monsoon rains, so they can run low or dry in parts of the year. The Krishna river is the one that actually flows right through Vijayawada, your own city."
+          "content": "High in the Himalayas, snow melts a little every single day, all year round — so a river like the Ganga never really stops flowing, whether it's raining or not. Far away, a river like the Krishna lives a different life: it swells up strong during the monsoon rains, then runs low for the rest of the year, waiting for the rains to come again. Two real rivers, two different rhythms — and the Krishna is the very river that flows right through Vijayawada, your own city."
         },
         {
           "type": "narration",
-          "content": "Picture a river starting way up in a snowy mountain — that snow keeps slowly melting all year, so the river never really stops. Now picture a different river that only gets full and strong when the monsoon rains come. That's the real difference between these two kinds."
+          "content": "Picture the Ganga as a river that never has to wait for anything — the mountain snow keeps feeding it. Now picture the Krishna, patiently waiting each year for the monsoon to arrive before it can run full and strong again."
         }
       ],
       "checkQuestions": [
@@ -85,17 +85,17 @@
     {
       "id": "man-made-water-systems",
       "title": "How people manage water",
-      "sourceRef": "Paraphrased from textbook Ch.8, 'Canals', 'Lakes and Tanks', 'Wells and Tube Wells'",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Canals', 'Lakes and Tanks', 'Wells and Tube Wells'; rewritten in narrative form 2026-08-23",
       "provenance": "source",
       "hint": "One of these is dug straight down into the ground. Another is a man-made channel that carries river water somewhere it wouldn't normally reach.",
       "representations": [
         {
           "type": "text",
-          "content": "Where there's no river nearby, people build canals to carry river water to their fields. Lakes and tanks collect rainwater or river water in natural low areas of land, and that water is used for irrigation, drinking, and fishing. Wells and tube wells are dug straight into the ground to reach water that has soaked below the surface. The farmland around Vijayawada uses canals fed by the Krishna river for exactly this reason."
+          "content": "Picture a farmer whose fields are far from any river. Without water, nothing will grow — a real problem. Over time, people invented three different solutions. Some dug straight down into the earth, through wells and tube wells, to reach water hiding underground. Others built canals — long channels that carry river water across the land to reach fields that could never reach the river themselves. And some collected rainwater in large natural dips in the land, called lakes and tanks, saving it for irrigation, drinking, and fishing later. The farmland around Vijayawada uses exactly this kind of canal, fed by the Krishna river, for this same reason."
         },
         {
           "type": "narration",
-          "content": "Imagine you're a farmer, but there's no river anywhere near your fields. What do you do? You could dig down into the ground for water, save up rainwater in a big tank, or build a long channel to bring river water all the way to you. India actually does all three."
+          "content": "If you were that farmer, which would you choose — dig down for hidden water, build a long channel to bring the river to you, or save up rain when it falls? India actually does all three, in different places, depending on what the land allows."
         }
       ],
       "checkQuestions": [
@@ -110,13 +110,13 @@
     {
       "id": "multi-purpose-dams",
       "title": "What a dam actually does",
-      "sourceRef": "Paraphrased from textbook Ch.8, 'Multi-purpose Projects'",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Multi-purpose Projects'; rewritten in narrative form 2026-08-23; Prakasam Barrage's real functions independently verified via web search the same day (irrigation, water supply, flood control — not power)",
       "provenance": "source",
       "hint": "The clue is in the name itself — 'multi' means more than one. What are the different jobs listed in the text?",
       "representations": [
         {
           "type": "text",
-          "content": "A dam is built across a river, and it does far more than one job at once — that's why it's called a multi-purpose project. It stores water for irrigation, stops rivers from flooding nearby land, and produces hydroelectric power, all from the same river. The Prakasam Barrage, built right across the Krishna river in Vijayawada itself, is a real example close to home. Nagarjuna Sagar, which you already know from this chapter's exercises, is also on the Krishna river — but it's about 190 km away, near the Telangana border, not in Vijayawada.",
+          "content": "Every monsoon, a village near a big river used to flood. Fields went underwater, and families waited, worried, for the water to go down before they could plant again. Engineers studied the river and built a huge wall across it to hold the water back on purpose. Once it was built, real things changed. The floods stopped, because the wall held the extra monsoon water back. Farmers could open small gates whenever their fields needed water, even months later in the dry season. And the whole city could finally count on clean drinking water flowing to their homes, all year round. This isn't just a story — it's the Prakasam Barrage, built exactly this way across the Krishna river right in Vijayawada, doing exactly this for your own city today.",
           "image": {
             "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hirakud_Dam_Panorama.jpg",
             "alt": "Hirakud Dam, a real multi-purpose dam in India",
@@ -125,7 +125,7 @@
         },
         {
           "type": "narration",
-          "content": "One single dam can water thousands of farms, protect a whole town from flooding, and light up homes with electricity — all at the same time, from the same wall of concrete across a river."
+          "content": "Further upstream on that very same river, a different structure called Nagarjuna Sagar — the one you already know from this chapter's exercises — does something extra with its stored water: it spins machines to make electricity too, about 190 km away near the Telangana border. Same river, two real structures, doing different combinations of the same possible jobs."
         }
       ],
       "checkQuestions": [
@@ -140,10 +140,10 @@
     {
       "id": "types-of-minerals",
       "title": "What is a mineral, and what types are there?",
-      "sourceRef": "Paraphrased from textbook Ch.8, 'Mineral Resources' section",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Mineral Resources' section; rewritten in narrative form 2026-08-23",
       "provenance": "source",
       "activityType": "match_zones",
-      "teachingText": "A mineral is a substance found inside rocks. Metallic minerals contain metal — like iron, copper, and gold. Non-metallic minerals don't contain metal — like limestone, gypsum, and mica. Fuel minerals are burned for energy — like coal and petroleum. The cement used to build houses in Vijayawada is made from limestone, one of the non-metallic minerals you're about to sort.",
+      "teachingText": "Deep inside the rocks all around us, different minerals are hiding, and each one belongs to one of three real families. Metallic minerals contain metal — like iron, copper, and gold. Non-metallic minerals don't — like limestone, gypsum, and mica. Fuel minerals get burned for energy — like coal and petroleum. The cement used to build houses in Vijayawada is made from limestone, one of the non-metallic minerals you're about to sort.",
       "image": {
         "url": "https://commons.wikimedia.org/wiki/Special:FilePath/CSIRO_ScienceImage_10945_Coal.jpg",
         "alt": "Real coal, a fuel mineral",
@@ -168,17 +168,17 @@
     {
       "id": "minerals-in-india",
       "title": "Where India's key minerals come from",
-      "sourceRef": "Paraphrased from textbook Ch.8, mineral table and 'Learn More' notes",
+      "sourceRef": "Paraphrased from textbook Ch.8, mineral table and 'Learn More' notes; rewritten in narrative form 2026-08-23",
       "provenance": "source",
       "hint": "One of these minerals is used for cooking gas and running vehicles — that's your clue.",
       "representations": [
         {
           "type": "text",
-          "content": "Different minerals come from different parts of India. Iron is mined heavily in Jharkhand and Odisha and is used to make machines and buildings. Coal, found in Jharkhand and West Bengal, is burned as fuel and to make electricity. Petroleum, found in Assam and Gujarat, is turned into fuel for vehicles and cooking gas. The cooking gas cylinder in your own kitchen in Vijayawada very likely started as petroleum, mined hundreds of kilometres away."
+          "content": "Pick up something in your own house and trace it backward. The metal frame of a bicycle probably started as iron ore, dug from the ground in Jharkhand. The cooking gas your family uses in Vijayawada probably started as petroleum, pumped from the earth in Assam, hundreds of kilometres away. Coal, mined in places like Jharkhand and West Bengal, gets burned to make much of India's electricity. Every object traces back to a real place on the map."
         },
         {
           "type": "narration",
-          "content": "The metal in a building's frame probably started as iron ore dug out of the ground in Jharkhand. The gas your family cooks with probably started as petroleum, pumped out of the ground hundreds of kilometres away."
+          "content": "Imagine that same iron ore, or that same petroleum, travelling all the way from a mine in one state to your own kitchen or your own street. That long journey happens quietly, every single day, for almost everything you touch."
         }
       ],
       "checkQuestions": [
@@ -193,10 +193,10 @@
     {
       "id": "minerals-by-state-matching",
       "title": "Match each mineral to where it comes from",
-      "sourceRef": "Original hands-on practice activity built 2026-08-23 for the same mineral-state facts just introduced in 'Where India's key minerals come from' — added after the founder described exactly this kind of arbitrary paired fact as a real, ongoing struggle for his daughter",
+      "sourceRef": "Original hands-on practice activity built 2026-08-23 for the same mineral-state facts just introduced; teaching text rewritten in narrative form the same day",
       "provenance": "source",
       "activityType": "match_zones",
-      "teachingText": "You just read that Iron, Coal, and Petroleum each come from a different part of India. Instead of reading it again, let's practice it with your hands — place each mineral into the state it's mainly mined in.",
+      "teachingText": "You just traced how iron, coal, and petroleum each travel from a real state to reach you. Instead of just reading it again, let's practice it with your hands — place each mineral into the state it's mainly mined in, the same way you just imagined it happening.",
       "instructions": "Place each mineral into the state where it's mainly mined.",
       "zones": [
         { "id": "jharkhand", "label": "Jharkhand", "color": "#EAF3EF" },
@@ -212,17 +212,17 @@
     {
       "id": "human-resources",
       "title": "People as a resource",
-      "sourceRef": "Paraphrased from textbook Ch.8, 'Human Resources' section",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Human Resources' section; rewritten in narrative form 2026-08-23, grounded directly in the founder's own aquaculture work",
       "provenance": "source",
       "hint": "Who is it that actually digs up the minerals, builds the dams, and grows the crops? The resource itself can't do any of that alone.",
       "representations": [
         {
           "type": "text",
-          "content": "People are considered a resource too, because it's people who turn land, water, and minerals into things we can actually use. Without workers, engineers, and farmers, natural resources would just sit there, unused. Your own father's aquaculture work near Machilipatnam is a perfect real example — the water and the fish are natural resources, but it's people, like your dad, who turn them into something the whole family and business depends on."
+          "content": "A pond full of water and fish, sitting quietly, does nothing on its own. It takes a real person — someone who feeds the fish, checks the water, and knows exactly when to harvest — to turn that pond into food on a table and income for a family. That's precisely what your own father does every day near Machilipatnam: turning water and fish, two natural resources, into something the whole family depends on. That's why people themselves count as a resource — without someone's real work, even the richest natural resource just sits there, unused."
         },
         {
           "type": "narration",
-          "content": "A mountain full of iron ore is worthless on its own. It takes real people — digging, building, inventing — to turn that ore into something like a bicycle or a bridge. That's why people themselves count as a resource."
+          "content": "A mountain full of iron ore is exactly the same — worthless by itself. It takes real people, digging, building, inventing, to turn that ore into something like a bicycle or a bridge. Resources don't turn themselves into anything useful. People do that part."
         }
       ],
       "checkQuestions": [
@@ -237,17 +237,17 @@
     {
       "id": "overpopulation-impact",
       "title": "Too much of a good thing",
-      "sourceRef": "Paraphrased from textbook Ch.8, 'Impact of Overpopulation'",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Impact of Overpopulation'; rewritten in narrative form 2026-08-23",
       "provenance": "source",
       "hint": "If way more people need jobs than there are jobs available, what happens to the people who can't find one?",
       "representations": [
         {
           "type": "text",
-          "content": "Too many people can actually cause real problems. When a country has more people than its jobs, food, and resources can support, it leads to unemployment, food and water shortages, and even more trees being cut down, which harms the environment. A busy, crowded market street in Vijayawada during a festival gives you a small taste of what happens when there are far more people in one place than it was built for."
+          "content": "Picture a market street in Vijayawada on a normal day — enough space to walk, enough stalls for everyone. Now picture that same street during a huge festival, suddenly filled with far more people than it was built for. Some can't find a place to stand; some stalls run out of food fast. A whole country can face the exact same squeeze, permanently, when it has more people than its jobs, food, and land can really support — leading to unemployment, shortages, and more forests being cut down just to make room."
         },
         {
           "type": "narration",
-          "content": "Imagine a classroom built for thirty students, but sixty show up. There aren't enough chairs, books, or attention to go around. A whole country can face the exact same kind of squeeze when it has more people than it's ready for."
+          "content": "A classroom built for thirty students suddenly has sixty show up — not enough chairs, not enough books, not enough attention to go around. That squeeze, just much bigger and more permanent, is what overpopulation does to an entire country."
         }
       ],
       "checkQuestions": [
