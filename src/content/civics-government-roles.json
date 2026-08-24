@@ -3,8 +3,8 @@
   "subject": "Civics",
   "gradeBand": "class-4",
   "language": "en",
-  "reviewedBy": "",
-  "reviewedAt": "",
+  "reviewedBy": "Purna",
+  "reviewedAt": "2026-08-24",
   "_comment": "reviewedBy/reviewedAt must be filled in by a human reviewer (CNT-003) before this chapter is ever shown to a learner. IMPORTANT: this chapter was previously reviewed (Purna, 16-08-2026), but reviewedBy/reviewedAt were reset to empty on 2026-08-23 because two brand-new, never-reviewed concepts were added below. The review gate works at the whole-chapter level, not per-concept — so leaving the old sign-off in place would have let unreviewed new content reach a learner silently. The whole chapter (old + new content) needs a fresh look, even though the original two concepts haven't changed. Added 2026-08-23: (1) a 2x2 grid activity distinguishing PM/President (national) and CM/Governor (state) by WHO RUNS THINGS DAILY vs WHO IS CEREMONIAL — this is a genuinely different, harder distinction than the existing central-vs-state concept below, built after the founder described exactly this confusion in his daughter. (2) A South Indian state-capitals matching activity (5 states, not all of India — same 'fewer facts held tighter' principle used elsewhere), built after the founder described teaching state capitals as another real, ongoing struggle. Andhra Pradesh's capital was independently verified via web search 2026-08-23, since this specific fact has genuinely changed in recent Indian political history: Amaravati was confirmed by Parliament as the sole, permanent capital in April 2026, ending years of uncertainty — this is now settled, current fact, not a guess. Both new activities are wired into ANU's existing spaced-recall memory system (via learnerId + logEvent in MapMatchActivity), so correct/incorrect placements here now count toward getConceptsDueForRecall the same way quiz questions already do — practiced for lasting recall, not just a one-time game.",
   "concepts": [
     {
