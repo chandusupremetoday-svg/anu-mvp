@@ -495,3 +495,78 @@ over the current Phase 1 path (the AI backend is now live — next is
 getting the actual child using it, and expanding Himalayas/Civics
 content for the founder's own daughter). Flagged here so it isn't
 lost, not as a commitment to build now.
+
+## A learning companion, not just lesson content (founder's vision, 2026-08-23)
+
+The founder's own framing: ANU shouldn't just hold lessons — it should
+function as an actual planning companion for her whole school year,
+the way a genuinely attentive tutor would: knowing what's coming, how
+she's actually progressing subject by subject, and keeping both her
+and her parent oriented without either being surprised by an exam.
+Four real, distinct pieces, each with a different build cost and a
+different amount of real-world grounding available right now.
+
+**1. A syllabus/curriculum pacing calendar.**
+The honest architecture: this can't be automated from outside — there's
+no clean, accessible database of what a specific Andhra Pradesh school
+teaches in which month. The real, buildable version is a simple,
+structured file (same pattern as the lesson content itself) that the
+founder updates occasionally from her school diary or the textbook's
+own table of contents — "Chapter 8 expected around September" — which
+ANU then uses to decide what to build or reinforce next, and to warn
+ahead of time rather than reactively. **Important tension to hold
+honestly**: syncing to the school's calendar and pacing for genuine
+mastery are sometimes in real conflict — school moves forward on a
+fixed date whether or not a topic was truly understood. This calendar
+should inform *preparation timing*, not pressure ANU into rushing past
+real understanding the way school sometimes has to.
+
+**2. Subject-level analytics — genuinely cheap, because the data
+already exists.** Every attempt already logs `wasCorrect`, `hintsUsed`,
+and `hesitationMs` per concept (see `learnerMemory.js`). Nothing new
+needs logging — this is a matter of aggregating what's already being
+captured into a subject-level view: which subjects take her longer,
+which she gets right on the first try more often, roughly how long she
+tends to sit with the app per session. One honest caveat, so this
+isn't oversold: time-on-task is an ambiguous signal by itself — more
+time can mean real effort *or* quiet disengagement. Any summary shown
+to the founder should reflect that ambiguity rather than presenting
+raw minutes as a clean measure of struggle.
+
+**3. Realistic, personalized goal-setting.** Grounded in Vygotsky's
+"zone of proximal development" — the idea that a goal should sit just
+past what a learner can already do alone, not at a generic universal
+benchmark. Concretely: instead of a fixed "study 20 minutes a day,"
+suggest a next session length and question count based on *her own*
+recent real pace, recalculated as that pace changes. This depends
+directly on #2 existing first — no real analytics, no real basis for
+a realistic goal.
+
+**4. Continuity and re-engagement — a genuine "welcome back," not a
+blank lesson-picker.** When she returns after a gap, the app should
+briefly, warmly orient her: roughly what she did last, what's honestly
+due for a recall check (already tracked via `getConceptsDueForRecall`),
+and what's next — the way Duolingo's return-nudges or Khan Academy's
+"pick up where you left off" work, but tied to genuine understanding
+data, not just a streak counter. Real caution worth naming: streak-style
+mechanics are well known to create their own anxiety and can start
+optimizing for showing-up over actual understanding — exactly the kind
+of engagement-metric trap PRINCIPLES.md already warns ANU away from.
+This should feel like a mentor's memory of her, not gamification.
+
+**5. Parent-facing "no surprises" view.** An extension of ParentView,
+tied to #1: once a real syllabus calendar exists, ParentView could
+show something like "her school reaches Chapter 9 in ~3 weeks — here's
+her current footing on it" rather than the founder discovering an exam
+is close only once it's already close.
+
+**Honest sequencing, not a build order for tonight:** #2 (analytics)
+is the only piece with real data to build against *right now*, and
+even that should wait until she's actually used the rewritten "Our
+Resources" lesson at least once — building dashboards from zero real
+usage is the same "building blind" mistake already named elsewhere in
+this file. #1, #3, #4, and #5 all depend on either #2 existing first,
+or the founder's own manual input (the syllabus calendar) — none of
+this blocks Phase 1's actual next step, which is still: let her use
+what already exists, and see what real data says before building
+further.

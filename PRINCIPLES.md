@@ -112,6 +112,24 @@ clinical judgment about the founder's daughter or any other real child.
 Understanding *why* discouragement damages learning is different from
 ever labeling a specific child's state.
 
+**Never let a single exam score become the story, good or bad.**
+(Founder's framing, 2026-08-23.) A good school mark deserves real,
+warm celebration — that's genuinely human, not something to minimize.
+But grounded in Carol Dweck's well-replicated research on praise
+(Mueller & Dweck, 1998): praising a child's *intelligence* after
+success ("you're so smart") measurably makes children more fragile
+afterward — more avoidant of hard challenges, more likely to hide a
+bad result later. Praising *effort and process* ("you really worked
+through the tricky parts") produces the opposite: more resilience, more
+willingness to try hard things again. So celebration should land on
+what she did, not just the number. Equally important, and asked for
+explicitly: if she engages well with ANU but a school exam doesn't
+reflect that, ANU must never imply either caused the other — a school
+test and ANU's own checks measure different things (format, nerves,
+timing, question style), and treating a low score as proof she "didn't
+really learn it" would likely just be false, and would undo exactly
+the confidence this project exists to build.
+
 **Track promised actions explicitly — never assume "please do X" was
 completed just because the conversation moved on.** (This happened once
 already, 2026-08-23: Claude gave the founder a review sign-off to paste
@@ -132,18 +150,28 @@ by a process that doesn't hold itself to the same standard.
 
 **Design around Claude's own limits with real systems, the same way
 humans design around theirs — don't just try to be more careful.**
-(Founder's framing, 2026-08-23: humans didn't overcome a carrying-
-capacity limit by trying harder — they trained elephants, then built
-machines, that simply didn't share that limit. The same logic applies
-to an AI's in-conversation attention across a long, dense session.)
-Concretely, this project now has two real, git-tracked artifacts that
-hold state outside of anyone's memory: `scripts/check-review-status.js`
-mechanically verifies anything the code itself can prove (like whether
-a chapter has actually been reviewed), and `PENDING_ACTIONS.md` holds
-anything that can't be mechanically verified (a human judgment, a
-browser check) so it can't be silently lost either. Both are wired
-into the local pre-commit hook, so they surface automatically on every
-commit — nobody has to remember to run them. When a new class of
-"something might get silently forgotten" risk shows up, the right
-response is to ask whether a similar external, checkable system could
-hold that state too, rather than relying on anyone's attention alone.
+(Founder's framing, 2026-08-23, refined twice in the same session:
+humans didn't overcome a carrying-capacity limit by trying harder —
+they trained elephants, then built machines, that simply didn't share
+that limit. Then, more precisely: wherever a task has ONE mechanically
+checkable correct answer, write deterministic code to do it — don't
+make Claude re-derive it through live reasoning every time, since
+reasoning can lose focus over a long session in a way a fixed script
+structurally cannot.) This project now has three real, git-tracked
+artifacts that hold state or verify facts outside of anyone's memory
+or attention: `scripts/check-review-status.js` (is a chapter actually
+reviewed), `scripts/validate-content.js` (are check-questions and
+matching activities structurally solvable — e.g. does every "correct"
+answer actually appear in its own options list, does every activity
+item point to a real zone), and `PENDING_ACTIONS.md` (things that
+can't be mechanically verified at all — a human judgment, a browser
+check). All three are wired into the local pre-commit hook, so they
+surface automatically on every commit.
+
+**The honest boundary, so this principle doesn't get oversold:** this
+only replaces tasks with ONE checkable right answer. It does not, and
+should not be pretended to, replace live judgment — whether an
+explanation is actually warm, whether a photo fits a lesson's mood,
+whether a fact from a photographed textbook page is being read
+correctly. Those still need a human or Claude looking directly, every
+time, and no script changes that.
