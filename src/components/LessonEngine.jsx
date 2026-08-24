@@ -5,15 +5,14 @@ import { logEvent, getPreferredRepresentation, getConceptsDueForRecall, getStrug
 
 let cachedVoice = null;
 let currentAudio = null;
-// 2026-08-22: the ANU voice, in one place. Warm female, natural/
-// conversational per Sarvam's own docs. To try a different voice,
-// change ONLY this line — e.g. "priya" is a well-regarded alternative
-// if this one doesn't land well on listening. Full candidate list
-// (female): ritu, priya, neha, pooja, simran, kavya, ishita, shreya,
-// roopa, tanya, shruti, suhani, kavitha, rupali, amelia, sophia.
-// Avoid "varun" for anything child-facing — Sarvam's own docs describe
-// it as a deep, dramatic villain/suspense voice.
-const VOICE_SPEAKER = "ishita";
+// 2026-08-24: switched English narration from Sarvam to Google Cloud
+// TTS (WaveNet, genuine British English) — Sarvam's own materials
+// confirmed it's built for Indian-accented English specifically, not
+// neutral/British, and there was no setting that changed that. Sarvam
+// itself is untouched (api/generate-speech.js) in case Telugu is ever
+// needed elsewhere — this is a second, parallel voice path, not a
+// replacement.
+const GOOGLE_VOICE_NAME = "en-GB-Wavenet-A";
 function getVoices() {
   return new Promise((resolve) => {
     let voices = window.speechSynthesis.getVoices();
@@ -63,23 +62,29 @@ async function speakFallback(text) {
 // forever architecture, which needs shared storage (Supabase) to work
 // across different children/devices. This version only saves repeat
 // calls for one child, one browser — real, but limited on purpose.
-async function speak(text, languageCode = "en-IN") {
-  const cacheKey = `anu_voice_${languageCode}_${text}`;
+//
+// 2026-08-24: cache key prefix changed to "anu_voice_google_" (was
+// "anu_voice_") specifically so old cached Sarvam audio (WAV format)
+// can never collide with new Google audio (MP3 format) under the same
+// key — old and new are structurally incompatible, so this avoids
+// needing anyone to manually clear browser storage again.
+async function speak(text, languageCode = "en-GB") {
+  const cacheKey = `anu_voice_google_${languageCode}_${text}`;
   try {
     stopAnyCurrentAudio();
 
     const cached = localStorage.getItem(cacheKey);
     if (cached) {
-      const audio = new Audio(`data:audio/wav;base64,${cached}`);
+      const audio = new Audio(`data:audio/mp3;base64,${cached}`);
       currentAudio = audio;
       audio.play();
       return;
     }
 
-    const res = await fetch("/api/generate-speech", {
+    const res = await fetch("/api/generate-speech-google", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text, languageCode, speaker: VOICE_SPEAKER }),
+      body: JSON.stringify({ text, voiceName: GOOGLE_VOICE_NAME, pace: 0.7 }),
     });
 
     if (res.ok) {
@@ -91,7 +96,7 @@ async function speak(text, languageCode = "en-IN") {
           // storage full or unavailable — still fine, just won't cache this one
         }
         stopAnyCurrentAudio(); // in case another tap happened while we were waiting
-        const audio = new Audio(`data:audio/wav;base64,${data.audio}`);
+        const audio = new Audio(`data:audio/mp3;base64,${data.audio}`);
         currentAudio = audio;
         audio.play();
         return;
@@ -348,7 +353,7 @@ export default function LessonEngine({ chapter, learnerId }) {
         concept.title,
         chapter.chapterTitle
       );
-      await speak(explanation, "en-IN");
+      await speak(explanation, "en-GB");
     } finally {
       setIsNarrating(false);
     }
