@@ -43,14 +43,14 @@ outside the chat that can't simply be verified by reading code.
 
 ## Currently open
 
-- [ ] Confirm the two Wikimedia images (Hirakud Dam, coal) actually
-      render correctly on the live "Our Resources" lesson — Claude
-      could not verify this itself (sandbox network restrictions
-      block fetching Wikimedia directly from Claude's side), so this
-      needs a real look on the deployed site.
+*(nothing currently open)*
 
 ## Resolved
 
+- [x] Confirm the two Wikimedia images (Hirakud Dam, coal) actually
+      render correctly on the live "Our Resources" lesson —
+      **confirmed 2026-08-24** by Purna, checked directly on the
+      live site.
 - [x] Review "Who Runs Our Country and State?" (civics) fresh —
       **confirmed 2026-08-24** by real commit output (commit
       `bed0ff6`) and `scripts/check-review-status.js` showing
