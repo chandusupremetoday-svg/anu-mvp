@@ -40,7 +40,7 @@ export default async function handler(req, res) {
         // this one word if this doesn't land well on listening.
         speaker: speaker || "ishita",
         model: "bulbul:v3",
-        pace: 0.65,
+        pace: 0.7,
         // temperature controls expressiveness: higher = more natural,
         // lively delivery; lower = flatter and more even. Sarvam's own
         // default is 0.6 (fairly flat); raised here per direct request
