@@ -3,14 +3,14 @@
   "subject": "Social Studies",
   "gradeBand": "class-4",
   "language": "en",
-  "reviewedBy": "Purna",
-  "reviewedAt": "2026-08-24",
-  "_comment": "reviewedBy/reviewedAt must be filled in by a human reviewer (CNT-003) before this chapter is ever shown to a learner. Originally built 2026-08-22 from the founder's daughter's own Class 4 Social Studies textbook, Chapter 8 'Our Resources'. Fully rewritten 2026-08-23 into narrative form, following the founder's own core project thesis: his daughter (like most children, per real research) retains episodic/narrative memory far better than disconnected factual statements — grounded in Jerome Bruner's distinction between paradigmatic and narrative cognitive modes, and Stein & Glenn's story-grammar research on how children naturally structure narrative memory. Every story beat below IS a required fact, not decoration — deliberately avoiding the 'seductive details effect' (Garner et al.), where irrelevant-but-engaging story elements measurably REDUCE retention of the actual content by competing for attention. Structure used throughout: a real problem -> real action taken -> each original fact reframed as a direct consequence -> resolution, tied to Vijayawada/Machilipatnam where genuinely accurate. IMPORTANT CORRECTION in this revision: earlier drafts incorrectly implied the Prakasam Barrage (Vijayawada) generates hydroelectric power. Verified via web search 2026-08-23 against Wikipedia, the Andhra Pradesh government's own Krishna District Irrigation Circle page, and ICID historical records: Prakasam Barrage's real, confirmed functions are irrigation, drinking water supply, and flood control — NOT power generation, which happens at a different nearby structure (Nagarjuna Sagar, already correctly noted as ~190km away). Founder caught this error himself before it could reach a learner.",
+  "reviewedBy": "",
+  "reviewedAt": "",
+  "_comment": "reviewedBy/reviewedAt must be filled in by a human reviewer (CNT-003) before this chapter is ever shown to a learner. Originally built 2026-08-22, rewritten in narrative form 2026-08-23. COMPLETELY REBUILT 2026-08-25 after the founder identified two serious, real problems by reading through the full review document himself: (1) most check-questions could be answered correctly through common sense, vocabulary word-roots, or general prior knowledge WITHOUT reading or understanding the lesson text at all (e.g. guessing 'hydroelectric' from the word 'hydro', or knowing petrol powers vehicles from general knowledge) — meaning a correct answer proved nothing about whether she'd actually learned from THIS lesson. (2) the mineral-to-state matching activity gave zero on-screen support at the moment of the activity itself, immediately after the facts were only read once — real spaced retrieval practice is supposed to happen DAYS later via the recall system, not immediately with no scaffolding in the same sitting. Every check-question below was rebuilt to require a specific detail that only appears in this text (a mechanism, a reasoning, a named state, an explicit exclusion) with plausible-but-wrong distractors, not absurd ones — genuinely testing whether she read and understood this passage, not testing general knowledge she already had. The matching activity's teaching text now explicitly restates the three facts directly, immediately before the activity, as real support rather than a vague callback to 'what you just traced.' Founder caught this by reading the actual review document closely before approving it for his daughter, not by trusting the earlier technical-only review.",
   "concepts": [
     {
       "id": "natural-resource-intro",
       "title": "What is a natural resource?",
-      "sourceRef": "Paraphrased from textbook Ch.8 intro, 'Natural Resources' section; rewritten in narrative form 2026-08-23",
+      "sourceRef": "Paraphrased from textbook Ch.8 intro, 'Natural Resources' section; rewritten in narrative form 2026-08-23; check-question rebuilt 2026-08-25 to test the given-by-nature-vs-made-by-people distinction specifically, not just vocabulary recognition",
       "provenance": "source",
       "hint": "Think about things nobody built or made — they were just already there, waiting for us.",
       "representations": [
@@ -25,9 +25,9 @@
       ],
       "checkQuestions": [
         {
-          "prompt": "Which of these is a natural resource?",
+          "prompt": "Which of these did nature give us directly, without anyone having to make it?",
           "type": "multiple_choice",
-          "options": ["A mobile phone", "Sunlight", "A car"],
+          "options": ["A wooden chair", "Sunlight", "A brick"],
           "correct": "Sunlight"
         }
       ]
@@ -35,7 +35,7 @@
     {
       "id": "water-importance",
       "title": "Why water matters so much",
-      "sourceRef": "Paraphrased from textbook Ch.8, 'Water Resources and Their Importance'; rewritten in narrative form 2026-08-23",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Water Resources and Their Importance'; rewritten in narrative form 2026-08-23; check-question rebuilt 2026-08-25 to test the specific mechanism described (spinning machines), which is not guessable from the word 'hydroelectric' alone",
       "provenance": "source",
       "hint": "Think of everything you personally use water for in one single day — that's most of the answer.",
       "representations": [
@@ -50,17 +50,17 @@
       ],
       "checkQuestions": [
         {
-          "prompt": "Electricity made using water is called ______ power.",
+          "prompt": "According to the lesson, how does a dam actually turn water into electricity?",
           "type": "multiple_choice",
-          "options": ["hydroelectric", "solar", "wind"],
-          "correct": "hydroelectric"
+          "options": ["By spinning machines inside it", "By boiling the water into steam", "By freezing the water solid"],
+          "correct": "By spinning machines inside it"
         }
       ]
     },
     {
       "id": "rivers-of-india",
       "title": "Where our rivers come from",
-      "sourceRef": "Paraphrased from textbook Ch.8, 'Rivers' section; rewritten in narrative form 2026-08-23",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Rivers' section; rewritten in narrative form 2026-08-23; check-question rebuilt 2026-08-25 to test the WHY (mechanism) rather than WHICH river, since river identity alone may be culturally guessable without reading",
       "provenance": "source",
       "hint": "One kind of river never runs dry because snow keeps melting. The other kind depends completely on rain.",
       "representations": [
@@ -75,17 +75,17 @@
       ],
       "checkQuestions": [
         {
-          "prompt": "Which of these rivers flows all year round because it's fed by melting Himalayan snow?",
+          "prompt": "Why does a river like the Ganga keep flowing all year round, according to the lesson?",
           "type": "multiple_choice",
-          "options": ["Ganga", "Krishna", "Kaveri"],
-          "correct": "Ganga"
+          "options": ["Mountain snow keeps melting a little every day", "It rains there every single day", "It is connected directly to the ocean"],
+          "correct": "Mountain snow keeps melting a little every day"
         }
       ]
     },
     {
       "id": "man-made-water-systems",
       "title": "How people manage water",
-      "sourceRef": "Paraphrased from textbook Ch.8, 'Canals', 'Lakes and Tanks', 'Wells and Tube Wells'; rewritten in narrative form 2026-08-23",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Canals', 'Lakes and Tanks', 'Wells and Tube Wells'; rewritten in narrative form 2026-08-23; check-question rebuilt 2026-08-25 with plausible near-miss distractors (the other two real methods from the same passage) instead of a single guessable vocabulary match",
       "provenance": "source",
       "hint": "One of these is dug straight down into the ground. Another is a man-made channel that carries river water somewhere it wouldn't normally reach.",
       "representations": [
@@ -100,19 +100,19 @@
       ],
       "checkQuestions": [
         {
-          "prompt": "A channel built to carry river water to fields with no river nearby is called a ______.",
+          "prompt": "According to the lesson, what does a canal specifically do?",
           "type": "multiple_choice",
-          "options": ["canal", "tube well", "tank"],
-          "correct": "canal"
+          "options": ["Carries river water across land to fields that can't reach the river themselves", "Digs straight down to reach water hidden underground", "Collects rainwater in a natural dip in the land"],
+          "correct": "Carries river water across land to fields that can't reach the river themselves"
         }
       ]
     },
     {
       "id": "multi-purpose-dams",
       "title": "What a dam actually does",
-      "sourceRef": "Paraphrased from textbook Ch.8, 'Multi-purpose Projects'; rewritten in narrative form 2026-08-23; Prakasam Barrage's real functions independently verified via web search the same day (irrigation, water supply, flood control — not power)",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Multi-purpose Projects'; rewritten in narrative form 2026-08-23; Prakasam Barrage's real functions independently verified via web search 2026-08-23; check-question rebuilt 2026-08-25 with a plausible-sounding wrong answer (water purification) instead of an absurd one, requiring genuine recall of the three specific named jobs",
       "provenance": "source",
-      "hint": "The clue is in the name itself — 'multi' means more than one. What are the different jobs listed in the text?",
+      "hint": "The clue is in the name itself — 'multi' means more than one. What are the three specific jobs listed in the text?",
       "representations": [
         {
           "type": "text",
@@ -130,10 +130,10 @@
       ],
       "checkQuestions": [
         {
-          "prompt": "Which of these is NOT one of the jobs a multi-purpose dam does?",
+          "prompt": "Which of these is NOT one of the three real jobs a multi-purpose dam does, according to the lesson?",
           "type": "multiple_choice",
-          "options": ["Making electricity", "Controlling floods", "Growing crops directly on it"],
-          "correct": "Growing crops directly on it"
+          "options": ["Makes electricity", "Controls floods", "Purifies water to make it safe to drink"],
+          "correct": "Purifies water to make it safe to drink"
         }
       ]
     },
@@ -168,9 +168,9 @@
     {
       "id": "minerals-in-india",
       "title": "Where India's key minerals come from",
-      "sourceRef": "Paraphrased from textbook Ch.8, mineral table and 'Learn More' notes; rewritten in narrative form 2026-08-23",
+      "sourceRef": "Paraphrased from textbook Ch.8, mineral table and 'Learn More' notes; rewritten in narrative form 2026-08-23; check-question rebuilt 2026-08-25 to test the specific named states (only found by reading this text) instead of 'petroleum=fuel', which is common knowledge independent of this lesson",
       "provenance": "source",
-      "hint": "One of these minerals is used for cooking gas and running vehicles — that's your clue.",
+      "hint": "This asks about a STATE, not a mineral — look carefully at which states were actually named for iron.",
       "representations": [
         {
           "type": "text",
@@ -183,20 +183,20 @@
       ],
       "checkQuestions": [
         {
-          "prompt": "Which mineral is turned into fuel for vehicles and cooking gas?",
+          "prompt": "According to the lesson, which of these states is NOT mentioned as a place where iron is mined?",
           "type": "multiple_choice",
-          "options": ["Petroleum", "Iron", "Mica"],
-          "correct": "Petroleum"
+          "options": ["Jharkhand", "Odisha", "Kerala"],
+          "correct": "Kerala"
         }
       ]
     },
     {
       "id": "minerals-by-state-matching",
       "title": "Match each mineral to where it comes from",
-      "sourceRef": "Original hands-on practice activity built 2026-08-23 for the same mineral-state facts just introduced; teaching text rewritten in narrative form the same day",
+      "sourceRef": "Original hands-on practice activity built 2026-08-23 for the same mineral-state facts just introduced. REBUILT 2026-08-25: teachingText now explicitly restates all three facts directly as real on-screen support, instead of vaguely referencing 'what you just traced' with nothing to actually reference — the founder correctly identified this as unsupported, not genuine spaced retrieval practice (real spacing happens days later via getConceptsDueForRecall, not immediately in the same sitting with zero scaffolding)",
       "provenance": "source",
       "activityType": "match_zones",
-      "teachingText": "You just traced how iron, coal, and petroleum each travel from a real state to reach you. Instead of just reading it again, let's practice it with your hands — place each mineral into the state it's mainly mined in, the same way you just imagined it happening.",
+      "teachingText": "Here are the three facts again, clearly: Iron mainly comes from Jharkhand. Coal mainly comes from West Bengal. Petroleum mainly comes from Assam. Now let's practice remembering this with your hands — place each mineral into the state it belongs to.",
       "instructions": "Place each mineral into the state where it's mainly mined.",
       "zones": [
         { "id": "jharkhand", "label": "Jharkhand", "color": "#EAF3EF" },
@@ -212,7 +212,7 @@
     {
       "id": "human-resources",
       "title": "People as a resource",
-      "sourceRef": "Paraphrased from textbook Ch.8, 'Human Resources' section; rewritten in narrative form 2026-08-23, grounded directly in the founder's own aquaculture work",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Human Resources' section; rewritten in narrative form 2026-08-23; check-question rebuilt 2026-08-25 with plausible-but-insufficient distractors (both factually true statements, but neither answers WHY people count as a resource) instead of obviously irrelevant ones",
       "provenance": "source",
       "hint": "Who is it that actually digs up the minerals, builds the dams, and grows the crops? The resource itself can't do any of that alone.",
       "representations": [
@@ -227,17 +227,17 @@
       ],
       "checkQuestions": [
         {
-          "prompt": "Why are people considered a resource?",
+          "prompt": "According to the lesson, WHY exactly are people considered a resource?",
           "type": "multiple_choice",
-          "options": ["They turn natural resources into useful things", "They live in cities", "They study in school"],
-          "correct": "They turn natural resources into useful things"
+          "options": ["They do the work that turns other resources into useful things", "There are a lot of people living in the world", "People need resources like water and food to survive"],
+          "correct": "They do the work that turns other resources into useful things"
         }
       ]
     },
     {
       "id": "overpopulation-impact",
       "title": "Too much of a good thing",
-      "sourceRef": "Paraphrased from textbook Ch.8, 'Impact of Overpopulation'; rewritten in narrative form 2026-08-23",
+      "sourceRef": "Paraphrased from textbook Ch.8, 'Impact of Overpopulation'; rewritten in narrative form 2026-08-23; check-question rebuilt 2026-08-25 with thematically-plausible distractors (resource-related, but not real overpopulation effects) instead of absurd ones",
       "provenance": "source",
       "hint": "If way more people need jobs than there are jobs available, what happens to the people who can't find one?",
       "representations": [
@@ -252,10 +252,10 @@
       ],
       "checkQuestions": [
         {
-          "prompt": "Which of these is a real effect of overpopulation mentioned in the lesson?",
+          "prompt": "According to the lesson, what is a real effect of overpopulation?",
           "type": "multiple_choice",
-          "options": ["Unemployment", "More rainfall", "Fewer minerals forming"],
-          "correct": "Unemployment"
+          "options": ["Unemployment, because there are more people than jobs", "Better quality farmland for everyone", "More minerals being discovered underground"],
+          "correct": "Unemployment, because there are more people than jobs"
         }
       ]
     }
