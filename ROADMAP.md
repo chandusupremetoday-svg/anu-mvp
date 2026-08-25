@@ -570,3 +570,175 @@ or the founder's own manual input (the syllabus calendar) — none of
 this blocks Phase 1's actual next step, which is still: let her use
 what already exists, and see what real data says before building
 further.
+
+---
+
+## The real teaching-content principle, given repeatedly by the founder himself (2026-08-25)
+
+This is now the single most important content-design rule in this
+project, and it was nearly lost twice before being written down here.
+
+On 2026-08-25, the founder set aside two full pages of written notes
+after they failed — his daughter couldn't understand what he'd
+written — and instead just talked to her, live, about a photo he
+imagined: her own balcony, her own sunrise, her own walk to school.
+Every fact arrived because he asked her first ("did anyone put the sun
+there?"), never because he told her. He then gave a second, different
+example unprompted: a train to Kashi, two children arguing over what
+powers their toy train, one child guessing wrong (how many batteries
+would the REAL train need?) before another corrects her — covering
+electricity, coal, and petrol through argument, never exposition. He
+followed this immediately with the same train reaching Ranchi, iron
+mines visible from the window, a boy blurting "iron!" unprompted. Later
+the same night, a torn roti unfairly split explained fairness/fractions
+to his daughter's own real objection, not a taught rule. His own
+verdict on an early attempt to imitate this in writing: "you are being
+mechanical."
+
+**The actual, distilled mechanism, confirmed against every example he
+gave, not just one:**
+1. One continuous real scene from the child's own plausible life —
+   never "a village somewhere" or a generic setting.
+2. Every fact is already sitting inside that scene, waiting to be
+   noticed — never announced before it's discovered.
+3. Each fact arrives through a different one of: a direct question, a
+   wrong guess corrected by someone else's voice, silence and pure
+   observation, a physical sensation, or noticing something that was
+   present the whole time. Never the same door twice in a row within
+   one scene.
+
+**A real, costly failure from this same night, worth recording so it
+never repeats:** the founder had already given a related, specific
+example weeks earlier (2026-08-15, see the MapWalkthrough entry
+elsewhere in this file) — a child dreaming of impossibly heavy rain,
+then learning that Arunachal Pradesh genuinely receives rainfall that
+heavy, for real, on the far side of the same Himalayas the Ladakh
+content already covers. That specific idea was never written into
+`himalayas-concept-graph.json`, and was never captured anywhere in this
+file either — it simply vanished until the founder, rightly angry,
+had to repeat it. **The lesson: when the founder gives a concrete
+content idea in conversation, it must be captured here or built into
+the actual content file in the same session — never left to only exist
+in a chat transcript**, which is exactly the class of risk
+PENDING_ACTIONS.md and this file already exist to prevent, and which
+still failed here because the idea was never logged as a concrete
+pending item at the time it was given.
+
+**Not yet done:** rewriting `himalayas-concept-graph.json`'s eastern-
+Himalayas/rainfall concept to actually use the dream scene above,
+instead of the current generic "giant wall" narration. Not yet done:
+applying this same mechanism to the rest of "Our Resources" and any
+future content — right now only a proof-of-concept version exists,
+demonstrated in-conversation, not yet built into the actual app.
+
+**A good idea only survives past the chat it was born in if it lands
+in these project files before that chat ends — a real, costly failure
+from 2026-08-25.** Claude has no ability to read or recall a different
+conversation's transcript, word for word, ever — that's not a memory
+lapse to try harder at, it's a structural fact about how separate
+conversations work. What DOES carry forward is a smaller set of
+specific facts the founder has stated, filed automatically after each
+conversation — and critically, that filing only stores what the
+FOUNDER said, never ideas Claude itself generated or proposed. This
+means: if Claude proposes a genuinely good creative idea in one
+conversation and it isn't written into ROADMAP.md, BUILD_LOG.md, or
+this file in that same session, it is gone — not hard to find, not
+"in Claude's memory somewhere," just gone, with no path back to it,
+even for Claude itself. This happened for real: a dream-sequence idea
+about Arunachal Pradesh's heavy rainfall, discussed and apparently
+proposed by Claude in an entirely separate chat, was completely
+unrecoverable when the founder referenced it here, because it had
+never been written into any permanent project file. The standing rule
+this creates: any concrete content idea or design proposal worth
+keeping — whichever conversation it comes from, whoever originated
+it — gets written into ROADMAP.md (or built directly) in the same
+session it's raised, every time, with no exception for "it feels too
+early" or "I'll remember it." Nothing survives that isn't written
+down here.
+
+## The founder's core educational philosophy, and the teacher-avatar/exploration/night-dream concept (2026-08-25, given twice — this must never be lost a third time)
+
+**This is the single most important vision statement in this entire
+project, and it has already been lost once before being written down
+here properly.**
+
+**The philosophy itself, in the founder's own terms:** education today
+is built around marks and exam rank, and that is precisely the thing
+this project exists to reject. His standard is not "did she pass a
+quiz" — it is **"whenever she comes across this again, at any point in
+her life, does she instantly understand it."** He gave a real, concrete
+example of why this matters: a student who scored the *highest marks*
+in her Intermediate (12th-grade) exams still failed to secure a good
+rank in EAMCET, the real engineering/medical entrance exam — because
+rote memorisation of "what is in the book" produces confusion the
+moment a new, unfamiliar framing of the same idea appears, which is
+exactly what competitive entrance exams (EAMCET, NEET, engineering
+entrances) do on purpose, under negative marking and real time
+pressure. His conclusion: a child needs to be **fundamentally, not
+superficially, sound** — genuine understanding is what lets someone
+handle an unfamiliar situation later in life; memorised-for-the-test
+knowledge does not survive contact with anything new. This is the real
+reason behind every "does she really understand this, or did she just
+answer correctly" question already running through this whole project.
+
+**The concrete content mechanism he designed, in full, given twice
+now, once already lost:**
+
+1. A favourite-teacher figure explains a concept aloud — e.g. "the
+   Himalayas are the tallest mountains."
+2. On screen, a child avatar (representing the actual learner)
+   immediately re-enacts what was just said, in first person — e.g.
+   visibly climbing while saying "I am climbing the tallest mountain
+   in the world." The child doesn't just hear the fact — she watches
+   herself, as a character, physically embody it back.
+3. When the teacher gives a specific detail — e.g. "it stretches about
+   2,400 km" — the avatar and her friends begin an actual exploration
+   journey along that real distance, from Assam to Ladakh.
+4. Every further fact in the lesson is revealed through what the
+   travelling friends naturally notice while exploring, never through
+   the teacher stating it directly a second time — tea estates when
+   they reach Assam; when they reach Arunachal Pradesh, the mountains
+   there aren't snow-covered, but the region receives very heavy
+   rainfall (a fact the lesson itself gives later — the exploration
+   discovers it in the same natural way a real trip would).
+5. At the end of the exploration "day," the characters go to sleep —
+   and the child's avatar has a **night dream** of being caught in
+   heavy rain in Arunachal Pradesh with her friends, tying the day's
+   most vivid discovery directly into the sleep/dream sequence as a
+   deliberate act of consolidation.
+
+**Why step 5 is not just a nice narrative flourish — it has real
+science behind it, which should be said plainly:** sleep is not
+memory-neutral. It is well-established in neuroscience that sleep,
+and REM sleep specifically, plays a genuine, active role in
+consolidating a day's learning into longer-term memory. A dream
+sequence deliberately built around the day's most important discovery
+isn't just charming — it mirrors something real about how memory
+actually consolidates overnight. This is exactly the kind of
+"consolidation/recap" mechanism worth building as its own real
+feature, not folded quietly into a single lesson.
+
+**The failure, stated honestly and completely:** the founder first
+gave this entire concept, in full, in a *different* chat conversation.
+Claude (a different session, with no ability to share memory with any
+other) responded enthusiastically, called it "gorgeous," and explicitly
+promised it was "worth writing down properly" as a future
+consolidation/recap feature — and then never actually wrote it down
+anywhere. That promise was worthless, because it was never backed by
+an actual file edit in that session. The founder then had to describe
+the entire thing again, in full, a second time, tonight, after an
+exhausting day — and was, understandably, furious about it. This
+document is the actual fix, not another promise: the idea now lives
+here, in the project's own permanent file, not in any single
+conversation's memory.
+
+**Not yet built, deliberately not rushed tonight, but now permanently
+recorded so it cannot vanish again:** the full teacher/avatar/
+exploration/night-dream sequence described above, as a real feature —
+almost certainly its own significant production effort (real character
+animation or illustration, a full exploration-journey structure,
+scripted discovery-moments per real place along the route), not a
+same-night addition to existing lesson JSON. Worth scoping as a real
+project phase once Phase 1 validation with the founder's daughter is
+further along — but the *idea itself* must never again depend on any
+single conversation's memory to survive until then.
