@@ -12,7 +12,7 @@ let currentAudio = null;
 // itself is untouched (api/generate-speech.js) in case Telugu is ever
 // needed elsewhere — this is a second, parallel voice path, not a
 // replacement.
-const GOOGLE_VOICE_NAME = "en-GB-Wavenet-A";
+const GOOGLE_VOICE_NAME = "en-GB-Neural2-A";
 function getVoices() {
   return new Promise((resolve) => {
     let voices = window.speechSynthesis.getVoices();
