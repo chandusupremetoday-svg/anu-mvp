@@ -3,8 +3,8 @@
   "subject": "Social Studies",
   "gradeBand": "class-4",
   "language": "en",
-  "reviewedBy": "",
-  "reviewedAt": "",
+  "reviewedBy": "purna",
+  "reviewedAt": "2026-08-27",
   "_comment": "reviewedBy/reviewedAt must be filled in by a human reviewer (CNT-003) before this chapter is ever shown to a learner. Originally built 2026-08-22, rewritten in narrative form 2026-08-23. COMPLETELY REBUILT 2026-08-25 after the founder identified two serious, real problems by reading through the full review document himself: (1) most check-questions could be answered correctly through common sense, vocabulary word-roots, or general prior knowledge WITHOUT reading or understanding the lesson text at all (e.g. guessing 'hydroelectric' from the word 'hydro', or knowing petrol powers vehicles from general knowledge) — meaning a correct answer proved nothing about whether she'd actually learned from THIS lesson. (2) the mineral-to-state matching activity gave zero on-screen support at the moment of the activity itself, immediately after the facts were only read once — real spaced retrieval practice is supposed to happen DAYS later via the recall system, not immediately with no scaffolding in the same sitting. Every check-question below was rebuilt to require a specific detail that only appears in this text (a mechanism, a reasoning, a named state, an explicit exclusion) with plausible-but-wrong distractors, not absurd ones — genuinely testing whether she read and understood this passage, not testing general knowledge she already had. The matching activity's teaching text now explicitly restates the three facts directly, immediately before the activity, as real support rather than a vague callback to 'what you just traced.' Founder caught this by reading the actual review document closely before approving it for his daughter, not by trusting the earlier technical-only review.",
   "concepts": [
     {
