@@ -794,3 +794,46 @@ already proven for voice and photos. A real, promising direction — but
 a human-guided production step layered on top of the adaptive engine,
 never a live auto-generation feature, and not urgent compared to
 extending real subject coverage using what's already built.
+
+## A better direction than AI video: programmatic video (Remotion), AI used only narrowly (2026-08-27)
+
+The founder's own counter-proposal, in response to the Veo/Sora
+research above: instead of AI *generating* video (expensive, currently
+unstable), build video the way many real Indian educational content
+creators actually do — using proven, established, non-generative
+technology — and only reach for AI narrowly, where it genuinely
+reduces cost, not as the default engine.
+
+**Real, verified match for this: Remotion** (remotion.dev) — an
+actively-maintained, open-source framework (39k+ GitHub stars, ~900k
+installs/month, in production since 2021) that renders real MP4 video
+files from **React components**, the same language ANU's own
+components are already written in. It works by rendering a real
+browser page and exporting it as video, combined with real audio — the
+video is *assembled* from things already decided in code, not
+*invented* by a model guessing what a scene should look like.
+
+**The genuinely exciting part: ANU already has a small, working proof
+this direction works.** `MapWalkthrough.jsx` — the "I am here" walking
+figure moving across the Himalayas map, timed to narration — is
+already exactly this kind of thing: a real, code-built, controllable
+animation with synced voice. It currently plays live inside the app;
+Remotion is the tool that would let something built the same way be
+rendered into an actual, exportable video file.
+
+**Honest cost structure, verified:** Remotion's license is free for a
+small team/individual (open source core). The real cost is developer
+time designing each scene, plus modest render compute — nowhere near
+AI video's per-second pricing, since nothing is being generated from
+scratch. AI's honest, narrow role in this pipeline, matching the
+founder's own framing exactly: something like generating one specific
+illustration for a concept with no real photo available (image
+generation costs cents) — not generating the video itself.
+
+**Not yet decided or scoped:** whether/when to build a real Remotion-
+based rendering pipeline, how it would relate to the existing
+MapWalkthrough component, and what the first real scene/concept worth
+producing this way would be. A genuinely promising direction, distinct
+from — and a much better foundation than — the AI-video dead end
+documented above, but real design and engineering effort, not a
+same-night build.
