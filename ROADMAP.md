@@ -742,3 +742,55 @@ same-night addition to existing lesson JSON. Worth scoping as a real
 project phase once Phase 1 validation with the founder's daughter is
 further along — but the *idea itself* must never again depend on any
 single conversation's memory to survive until then.
+
+## AI video generation for lesson content — real cost/stability research (2026-08-27)
+
+The founder generated a genuinely impressive 30-second sample video
+himself (Gemini/Veo, Telugu narration, his own prompt) showing a
+teacher walking with schoolgirls at a real dam, and asked whether ANU
+itself should auto-generate this kind of video from textbook text, for
+any subject, live. Real research findings, checked directly against
+current pricing pages and news, not assumed:
+
+**Google Veo 3.1** (what the founder used): official API pricing is
+$0.15–0.75 per *second* depending on tier — $6 for one 8-second clip
+at full quality. His own real, lived experience on a $399/month
+subscription: roughly one 30-second clip every 5 hours, a genuine rate
+limit even on a paid plan.
+
+**OpenAI Sora 2**, checked as the founder's requested comparison:
+similar cost ($0.10–0.70/sec) — but critically, multiple independent
+sources confirm **OpenAI's Sora API is scheduled for shutdown on
+September 24, 2026, weeks from this research, with no replacement
+announced.** Its consumer app already shut down in April 2026. Building
+anything real on it today would mean building on a platform already
+disappearing.
+
+**The honest conclusion, stated plainly:** at 2026 prices, auto-
+generating a fresh video for every concept, live, with no human
+review, is not viable for a bootstrapped, one-person project — one
+30-second clip alone costs more than the *entire* voice system's
+monthly budget under the existing generate-once-cache-forever
+architecture. Both major video platforms are also genuinely unstable
+right now (rate limits, a live shutdown countdown) — a real, separate
+reason beyond cost not to build core infrastructure on either yet.
+
+**The real, load-bearing insight from this conversation, worth keeping
+central:** personalization was never mainly a video problem. The
+actual adaptive engine — investigate-don't-diagnose error handling
+(INV-001, already built), representation-switching on failure
+(PED-003, already built), per-learner delayed recall (PED-005, already
+built) — is what makes ANU personalized to one specific child, and
+none of it depends on video existing at all. Math, Hindi, and Science
+can all be extended using the exact same proven pattern as "Our
+Resources" (real textbook text, human-reviewed concept graph, the
+adaptive loop, real voice) without waiting on video technology to
+mature or get cheaper.
+
+**Not yet decided, deliberately:** whether/when to incorporate founder-
+created, founder-reviewed video clips (like the dam sample) into actual
+lesson content, following the same generate-once/human-review pattern
+already proven for voice and photos. A real, promising direction — but
+a human-guided production step layered on top of the adaptive engine,
+never a live auto-generation feature, and not urgent compared to
+extending real subject coverage using what's already built.
