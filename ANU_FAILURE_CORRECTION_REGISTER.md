@@ -315,7 +315,6 @@ The mentor must classify the activity before applying a restriction.
 
 ---
 
-
 # FAIL-011 — Event/Teaching-Plan Concept Identity Was Not Enforced at the Adapter Boundary
 
 **Date:** 2026-11-15  
@@ -383,6 +382,88 @@ For every future Evidence → Teaching Decision boundary test:
 
 A locally safe downstream adapter is not sufficient if upstream identity can be inconsistent. **Provenance identity must be checked explicitly at the boundary where evidence becomes decision-eligible.**
 
+---
+
+# FAIL-012 — Missing Event Concept Produced an Exception Instead of UNKNOWN/BLOCKED
+
+**Date:** 2026-11-15  
+**Activity / context:** TEST-ONLY / LEVS-001 Evidence → Teaching Decision adversarial boundary test
+
+**Status:** DISCOVERED / REGRESSION CONTROL REQUIRED / NO PRODUCTION FIX AUTHORIZED
+
+### What was found
+
+An adversarial test supplied an event with the required concept identity missing.
+
+The current lower-level Evidence Admission validation path threw:
+
+`event.conceptId must be a non-empty string`
+
+instead of returning a governed **UNKNOWN / BLOCKED** result.
+
+### Why the reasoning/implementation is wrong
+
+The current governing Evidence Admission contract explicitly defines UNKNOWN for information that is insufficient to determine eligibility safely and requires missing information to remain unknown rather than being inferred.
+
+The durable provenance reconciliation likewise requires missing critical provenance to become UNKNOWN rather than being inferred.
+
+An unhandled exception does not preserve that governed uncertainty state.
+
+### Correct rule
+
+If a critical provenance field required to establish evidence/decision eligibility is absent:
+
+- do not infer it from the Teaching Plan;
+- do not manufacture a replacement identity;
+- do not produce a Teaching Decision proposal;
+- preserve the uncertainty;
+- return the governed **UNKNOWN / BLOCKED** boundary result.
+
+### Prevention check
+
+For every future provenance-boundary test:
+
+1. Identify each critical provenance field.
+2. Test the field as present, mismatched, and missing where applicable.
+3. Verify missing identity does not fall through to an exception that bypasses the governed uncertainty state.
+4. Verify no downstream Teaching Decision proposal is produced.
+5. Verify no execution is possible.
+6. Preserve the original event without mutation.
+
+### Regression test
+
+**TD-PROV-02 / TD-EXE-03 — missing event concept**
+
+Input:
+- event concept missing;
+- Teaching Plan concept present;
+- otherwise valid evidence.
+
+Expected:
+- **UNKNOWN / BLOCKED**;
+- no inference from the Teaching Plan concept;
+- no Teaching Decision proposal;
+- no execution;
+- historical event unchanged.
+
+Observed before correction:
+- lower-level validator throws `event.conceptId must be a non-empty string`.
+
+This observed exception is the defect to eliminate when a correction is authorized.
+
+### Related governing records
+
+- ANU_EVIDENCE_ADMISSION_GATE_V0_1.md
+- ANU_EVIDENCE_TO_TEACHING_DECISION_CONTRACT_V0_1.md
+- ANU_DURABLE_RECORD_RECONCILIATION_2026-09-27.md
+- ANU_LEVS001_DECISION_EXECUTION_BOUNDARY_TEST_SPEC_V0_1.md
+- ANU_LEVS001_DECISION_EXECUTION_BOUNDARY_TEST_REPORT_V0_1.md
+
+### Durable lesson
+
+**An error condition is not automatically a governed uncertainty state.** When ANU cannot establish critical provenance, the system must preserve UNKNOWN/BLOCKED explicitly rather than allowing a validation exception to bypass the evidence boundary.
+
+---
 
 # 3. Standing Regression Rules
 
