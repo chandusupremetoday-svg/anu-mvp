@@ -316,6 +316,74 @@ The mentor must classify the activity before applying a restriction.
 ---
 
 
+# FAIL-011 — Event/Teaching-Plan Concept Identity Was Not Enforced at the Adapter Boundary
+
+**Date:** 2026-11-15  
+**Activity / context:** TEST-ONLY / LEVS-001 Evidence → Teaching Decision adversarial boundary test
+
+**Status:** DISCOVERED / REGRESSION CONTROL REQUIRED / NO PRODUCTION FIX AUTHORIZED
+
+### What was found
+
+An adversarial test supplied an event whose `conceptId` did not match the Teaching Plan concept, while the measurement was otherwise DEMONSTRATED and the requested LEVS-001 claim was valid for the plan.
+
+The current adapter still allowed the event to reach the existing Teaching Decision Evaluator using the plan's concept.
+
+### Why this matters
+
+The Evidence Admission result preserves the event concept, but the downstream decision object is constructed from the Teaching Plan context. Without an explicit identity check at this boundary, an event can be locally admitted while the decision context is not demonstrably tied to the same concept.
+
+This is a provenance-integrity defect, not evidence that the teaching rule itself is correct or incorrect.
+
+### Correct rule
+
+Before evidence from an event is allowed to produce a Teaching Decision proposal, the governed boundary must establish that the event and the decision context refer to the same authoritative concept identity.
+
+If identity cannot be established safely, the result must remain **UNKNOWN / blocked** rather than being silently reconciled.
+
+### Prevention check
+
+For every future Evidence → Teaching Decision boundary test:
+
+1. Compare event concept identity with Teaching Plan concept identity.
+2. Do not use the plan's concept to silently overwrite or reinterpret the event's concept.
+3. Test mismatched concept identity explicitly.
+4. Test missing concept identity explicitly.
+5. Preserve the original event identity in the admission record.
+6. Treat unresolved identity as a provenance gap, not as a harmless mismatch.
+
+### Regression test
+
+**TD-PROV-01 — mismatched concept**
+
+- Event concept: intentionally different from Teaching Plan concept.
+- Measurement: otherwise valid DEMONSTRATED.
+- Expected: decision eligibility is **blocked / UNKNOWN**.
+- Expected: no Teaching Decision proposal is produced from the mismatched event.
+
+**TD-PROV-02 — missing event concept**
+
+- Event concept: missing.
+- Expected: admission/decision eligibility remains **UNKNOWN / blocked**.
+
+**TD-PROV-03 — matching concept**
+
+- Event concept equals Teaching Plan concept.
+- Other governed evidence is valid.
+- Expected: normal test path may proceed to the existing read-only evaluator.
+
+### Related governing records
+
+- ANU_EVIDENCE_ADMISSION_GATE_V0_1.md
+- ANU_TEACHING_DECISION_CONTRACT_V0_1.md
+- ANU_DURABLE_RECORD_RECONCILIATION_2026-09-27.md
+- ANU_STAGE4_CONTINUATION_CHECKPOINT_2026-09-27.md
+
+### Durable lesson
+
+A locally safe downstream adapter is not sufficient if upstream identity can be inconsistent. **Provenance identity must be checked explicitly at the boundary where evidence becomes decision-eligible.**
+
+
 # 3. Standing Regression Rules
 
 These are cross-project checks derived from repeated ANU governance requirements.
