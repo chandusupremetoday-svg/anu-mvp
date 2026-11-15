@@ -168,6 +168,9 @@ can't be mechanically verified at all — a human judgment, a browser
 check). All three are wired into the local pre-commit hook, so they
 surface automatically on every commit.
 
+
+**Mandatory continuity and regression check before consequential work.** The project now has a durable failure/correction register (`ANU_FAILURE_CORRECTION_REGISTER.md`). This is not a memory aid; it is a required regression-control layer. Before substantial ANU work, the working process must check the current governing state and relevant prior failures before acting. In particular, before interpreting a boundary, proposing an implementation, changing code, running an experiment, or making a claim, classify the activity and check whether a known failure pattern applies. If a rule is being used as a blocker, verify its scope rather than transferring it to a different activity type. If a consequential mistake occurs, stop, correct it, determine why the existing control did not prevent it, and record a concrete regression test when warranted. At session restart, do not rely on conversational memory; re-check the current checkpoint and relevant durable failure controls. The objective is not perfect reasoning by attention alone. It is to make important mistakes visible, durable, testable, and progressively harder to repeat.
+
 **The honest boundary, so this principle doesn't get oversold:** this
 only replaces tasks with ONE checkable right answer. It does not, and
 should not be pretended to, replace live judgment — whether an
