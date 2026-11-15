@@ -174,6 +174,148 @@ A validation boundary must be applied according to **scope and activity type**, 
 
 ---
 
+# FAIL-002 — A Previously Documented Idea Was Re-Presented as New
+
+**Context:** project continuity / prior documented decisions  
+**Status:** CORRECTED / REGRESSION CONTROL REQUIRED
+
+### What went wrong
+The assistant presented the comparative-scale teaching pattern as though it were new even though the founder had already documented it.
+
+### Correct rule
+Before presenting an idea as new, check the durable project records for existing versions, prior decisions, proposals, or rejected alternatives.
+
+### Regression test
+If an idea sounds familiar or related to an existing ANU capability, inspect BUILD_LOG.md, ROADMAP.md, PRINCIPLES.md, relevant decision records, and the actual repository before calling it new.
+
+---
+
+# FAIL-003 — A Promised or Requested Action Was Treated as Completed Without Verification
+
+**Context:** project continuity / external action tracking  
+**Status:** CORRECTED / REGRESSION CONTROL REQUIRED
+
+### What went wrong
+The assistant gave the founder a review sign-off/action to paste and commit. The next message changed topic, and the assistant continued without confirming that the external action had happened. The gap remained until the file was checked directly.
+
+### Correct rule
+A requested external action is NOT VERIFIED until the actual file, repository, command output, or other appropriate evidence confirms it.
+
+### Regression test
+If a previous step required pasting, editing, running, committing, or deploying, and the next turn does not confirm the result, inspect the actual state before building on it.
+
+---
+
+# FAIL-004 — A Valuable Project Idea Was Lost Because It Was Not Written Into a Durable Record
+
+**Context:** cross-conversation continuity / content design  
+**Status:** CORRECTED / REGRESSION CONTROL REQUIRED
+
+### What went wrong
+A specific Arunachal Pradesh heavy-rainfall dream/consolidation idea had been discussed earlier but was not captured in durable project files. The founder later had to repeat it. A related teacher/avatar/exploration/night-dream concept was also discussed and promised for future recording but was not actually written down until it was raised again.
+
+### Correct rule
+A project idea survives only when it is written into a durable project record or implemented in the repository.
+
+### Regression test
+At session end ask: “What important idea, decision, correction, or unresolved action exists only in this conversation?” If the answer is non-empty, record it durably or explicitly mark it intentionally discarded.
+
+---
+
+# FAIL-005 — Content Design Became Mechanical Instead of Following the Established Mechanism
+
+**Context:** teaching-content design  
+**Status:** CORRECTED / REGRESSION CONTROL REQUIRED
+
+### What went wrong
+An early attempt to reproduce the founder's teaching approach in written form was judged by the founder as mechanical. The assistant copied surface features rather than extracting the deeper mechanism from multiple concrete examples.
+
+### Correct rule
+When ANU has an established project-specific pattern, inspect the documented examples and derive the mechanism before generating more instances. Do not imitate only the visible wording or format.
+
+### Regression test
+Before generating more content in an established style, compare the proposed content against the documented mechanism and ask whether it is structurally consistent, not merely stylistically similar.
+
+---
+
+# FAIL-006 — Work Was Proposed or Built Without Sufficient Real Learner Evidence
+
+**Context:** feature sequencing / evidence-first development  
+**Status:** CORRECTED / REGRESSION CONTROL REQUIRED
+
+### What went wrong
+The project accumulated substantial feature work before the core learner-memory/adaptation capability was actually implemented. Later, the founder correctly identified that the central promise — learning and adapting to this child — had not yet been built. A later related risk was explicitly identified as “building blind”: proposing analytics or further personalization before the rewritten lesson had generated real learner usage data.
+
+### Correct rule
+Before extending a learner-facing capability, identify what real learner evidence exists, what claim it supports, and whether the proposed work depends on evidence that does not yet exist.
+
+### Regression test
+For a proposed dashboard, personalization rule, optimization, or new teaching capability ask: “What real learner data do we have for this decision today?” If insufficient, label the work accordingly and do not present it as evidence-driven.
+
+---
+
+# FAIL-007 — A Code Change Was Assumed to Have Applied Without Direct Verification
+
+**Context:** implementation / build-test workflow  
+**Status:** CORRECTED / REGRESSION CONTROL REQUIRED
+
+### What went wrong
+A first attempt to change LessonEngine.jsx did not actually take. Direct inspection later showed the expected code was absent. The change was reapplied and verified.
+
+### Correct rule
+Attempted change ≠ applied change ≠ verified behavior.
+
+### Regression test
+After a consequential patch, inspect the actual file for exact expected markers, then build/test before describing the change as complete.
+
+---
+
+# FAIL-008 — An Audit Result Was Initially Misread Because the Audit Script Itself Was Wrong
+
+**Context:** LEVS-001 audit  
+**Status:** CORRECTED / REGRESSION CONTROL REQUIRED
+
+### What went wrong
+An apparent identity mismatch was observed during audit of preserved runtime episodes. It was later traced to an audit-script error. The corrected audit showed the preserved non-session events matched the current session/episode identity.
+
+### Correct rule
+An audit tool is itself part of the evidence chain and can contain defects.
+
+### Regression test
+When an audit produces an unexpected contradiction, preserve the original output, inspect the audit method, reproduce the result independently where practical, and do not classify the contradiction until the instrument has been checked.
+
+---
+
+# FAIL-009 — Technical Capability Was Allowed to Look Like Educational Success
+
+**Context:** AI classification / adaptive behavior  
+**Status:** CORRECTED / REGRESSION CONTROL REQUIRED
+
+### What went wrong
+AI answer classification was confirmed live and technically correct, but it did not yet visibly change the learner's same-session experience. The technical capability therefore did not yet establish educational usefulness.
+
+### Correct rule
+Separate: code exists → code runs → behavior is correct → learner experiences the intended behavior → learner evidence supports the educational claim.
+
+### Regression test
+Before saying a pedagogical capability “works”, identify which of those levels has actually been verified.
+
+---
+
+# FAIL-010 — Genuine Experiment Boundaries Were Applied Outside Their Scope
+
+**Context:** STEP 6 / LEVS-001 / simulated learner testing  
+**Status:** CORRECTED / REGRESSION CONTROL REQUIRED
+
+This is the central recent failure already recorded as FAIL-001. It exposes the broader pattern: a rule can be correct while its application is wrong.
+
+**Regression:** DEVELOPMENT TESTING ≠ GENUINE LEARNER VALIDATION.
+
+The mentor must classify the activity before applying a restriction.
+
+---
+
+
 # 3. Standing Regression Rules
 
 These are cross-project checks derived from repeated ANU governance requirements.
